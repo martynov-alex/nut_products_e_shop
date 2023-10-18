@@ -1,8 +1,4 @@
 import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
-import 'package:nut_products_e_shop/src/features/account/account_screen.dart';
-import 'package:nut_products_e_shop/src/features/orders_list/orders_list_screen.dart';
-import 'package:nut_products_e_shop/src/features/sign_in/email_password_sign_in_screen.dart';
-import 'package:nut_products_e_shop/src/features/sign_in/email_password_sign_in_state.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/models/app_user.dart';
 import 'package:flutter/material.dart';
