@@ -8,11 +8,15 @@ import 'package:nut_products_e_shop/src/features/sign_in/email_password_sign_in_
 import 'package:nut_products_e_shop/src/features/sign_in/email_password_sign_in_state.dart';
 
 enum AppRoutes {
-  home,
-  cart,
-  orders,
-  account,
-  signIn,
+  home('/'),
+  cart('cart'),
+  orders('orders'),
+  account('account'),
+  signIn('signIn');
+
+  const AppRoutes(this.path);
+
+  final String path;
 }
 
 final goRouter = GoRouter(
@@ -20,12 +24,13 @@ final goRouter = GoRouter(
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
-      path: '/',
+      path: AppRoutes.home.path,
       name: AppRoutes.home.name,
       builder: (context, state) => const ProductsListScreen(),
       routes: [
         GoRoute(
-          path: AppRoutes.cart.name,
+          path: AppRoutes.cart.path,
+          name: AppRoutes.cart.name,
           pageBuilder: (context, state) => MaterialPage(
             key: state.pageKey,
             fullscreenDialog: true,
@@ -33,7 +38,8 @@ final goRouter = GoRouter(
           ),
         ),
         GoRoute(
-          path: AppRoutes.orders.name,
+          path: AppRoutes.orders.path,
+          name: AppRoutes.orders.name,
           pageBuilder: (context, state) => MaterialPage(
             key: state.pageKey,
             fullscreenDialog: true,
@@ -41,7 +47,8 @@ final goRouter = GoRouter(
           ),
         ),
         GoRoute(
-          path: AppRoutes.account.name,
+          path: AppRoutes.account.path,
+          name: AppRoutes.account.name,
           pageBuilder: (context, state) => MaterialPage(
             key: state.pageKey,
             fullscreenDialog: true,
@@ -49,7 +56,8 @@ final goRouter = GoRouter(
           ),
         ),
         GoRoute(
-          path: AppRoutes.signIn.name,
+          path: AppRoutes.signIn.path,
+          name: AppRoutes.signIn.name,
           pageBuilder: (context, state) => MaterialPage(
             key: state.pageKey,
             fullscreenDialog: true,
