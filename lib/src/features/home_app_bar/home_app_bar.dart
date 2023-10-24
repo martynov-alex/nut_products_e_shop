@@ -6,6 +6,7 @@ import 'package:nut_products_e_shop/src/common_widgets/action_text_button.dart';
 import 'package:nut_products_e_shop/src/features/home_app_bar/more_menu_button.dart';
 import 'package:nut_products_e_shop/src/features/home_app_bar/shopping_cart_icon.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// Custom [AppBar] widget that is reused by the [ProductsListScreen] and
 /// [ProductScreen].
@@ -45,18 +46,18 @@ class HomeAppBar extends StatelessWidget implements PreferredSizeWidget {
             ActionTextButton(
               key: MoreMenuButton.ordersKey,
               text: 'Orders'.hardcoded,
-              onPressed: () => context.go('/orders'),
+              onPressed: () => context.goNamed(AppRoutes.orders.name),
             ),
             ActionTextButton(
               key: MoreMenuButton.accountKey,
               text: 'Account'.hardcoded,
-              onPressed: () => context.go('/account'),
+              onPressed: () => context.goNamed(AppRoutes.account.name),
             ),
           ] else
             ActionTextButton(
               key: MoreMenuButton.signInKey,
               text: 'Sign In'.hardcoded,
-              onPressed: () => context.go('/signIn'),
+              onPressed: () => context.goNamed(AppRoutes.signIn.name),
             )
         ],
       );

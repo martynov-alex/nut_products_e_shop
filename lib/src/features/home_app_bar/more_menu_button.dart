@@ -2,6 +2,7 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/models/app_user.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 enum PopupMenuOption {
   signIn,
@@ -47,9 +48,10 @@ class MoreMenuButton extends StatelessWidget {
                 ];
         },
         onSelected: (option) => switch (option) {
-              PopupMenuOption.signIn => context.go('/signIn'),
-              PopupMenuOption.orders => context.go('/orders'),
-              PopupMenuOption.account => context.go('/account'),
+              PopupMenuOption.signIn => context.goNamed(AppRoutes.signIn.name),
+              PopupMenuOption.orders => context.goNamed(AppRoutes.orders.name),
+              PopupMenuOption.account =>
+                context.goNamed(AppRoutes.account.name),
             });
   }
 }
