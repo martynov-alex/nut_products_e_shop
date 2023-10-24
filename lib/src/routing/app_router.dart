@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/features/account/account_screen.dart';
 import 'package:nut_products_e_shop/src/features/orders_list/orders_list_screen.dart';
+import 'package:nut_products_e_shop/src/features/product_page/product_screen.dart';
 import 'package:nut_products_e_shop/src/features/products_list/products_list_screen.dart';
 import 'package:nut_products_e_shop/src/features/shopping_cart/shopping_cart_screen.dart';
 import 'package:nut_products_e_shop/src/features/sign_in/email_password_sign_in_screen.dart';
@@ -9,6 +10,7 @@ import 'package:nut_products_e_shop/src/features/sign_in/email_password_sign_in_
 
 enum AppRoutes {
   home('/'),
+  product('product/:id'),
   cart('cart'),
   orders('orders'),
   account('account'),
@@ -28,6 +30,14 @@ final goRouter = GoRouter(
       name: AppRoutes.home.name,
       builder: (context, state) => const ProductsListScreen(),
       routes: [
+        GoRoute(
+          path: AppRoutes.product.path,
+          name: AppRoutes.product.name,
+          builder: (context, state) {
+            final productId = state.pathParameters['id']!;
+            return ProductScreen(productId: productId);
+          },
+        ),
         GoRoute(
           path: AppRoutes.cart.path,
           name: AppRoutes.cart.name,
