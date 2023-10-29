@@ -13,7 +13,7 @@ void main() async {
   usePathUrlStrategy();
 
   // ensure URL changes in the address bar when using push / pushNamed
-// more info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
+  // more info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
   GoRouter.optionURLReflectsImperativeAPIs = true;
 
   // * Register error handlers. For more info, see:
