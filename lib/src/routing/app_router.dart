@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/features/account/account_screen.dart';
+import 'package:nut_products_e_shop/src/features/not_found/not_found_screen.dart';
 import 'package:nut_products_e_shop/src/features/orders_list/orders_list_screen.dart';
 import 'package:nut_products_e_shop/src/features/product_page/product_screen.dart';
 import 'package:nut_products_e_shop/src/features/products_list/products_list_screen.dart';
@@ -79,4 +80,5 @@ final goRouter = GoRouter(
       ],
     ),
   ],
+  errorBuilder: (context, state) => const NotFoundScreen(),
 );
