@@ -1,6 +1,8 @@
+import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/features/leave_review_page/leave_review_screen.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/models/purchase.dart';
+import 'package:nut_products_e_shop/src/routing/app_router.dart';
 import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
@@ -39,11 +41,9 @@ class LeaveReviewAction extends StatelessWidget {
                   .textTheme
                   .bodyLarge!
                   .copyWith(color: Colors.green[700]),
-              onPressed: () => Navigator.of(context).push(
-                MaterialPageRoute(
-                  fullscreenDialog: true,
-                  builder: (_) => LeaveReviewScreen(productId: productId),
-                ),
+              onPressed: () => context.goNamed(
+                AppRoutes.leaveReview.name,
+                pathParameters: {'id': productId},
               ),
             ),
           ),

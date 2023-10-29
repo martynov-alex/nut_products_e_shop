@@ -1,3 +1,4 @@
+import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/features/checkout/checkout_screen.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/models/item.dart';
@@ -5,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/features/shopping_cart/shopping_cart_item.dart';
 import 'package:nut_products_e_shop/src/features/shopping_cart/shopping_cart_items_builder.dart';
+import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// Shopping cart screen showing the items in the cart (with editable
 /// quantities) and a button to checkout.
@@ -40,12 +42,7 @@ class ShoppingCartScreen extends StatelessWidget {
         ),
         ctaBuilder: (_) => PrimaryButton(
           text: 'Checkout'.hardcoded,
-          onPressed: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              fullscreenDialog: true,
-              builder: (_) => const CheckoutScreen(),
-            ),
-          ),
+          onPressed: () => context.pushNamed(AppRoutes.checkout.name),
         ),
       ),
     );
