@@ -1,4 +1,5 @@
 import 'package:nut_products_e_shop/src/constants/test_products.dart';
+import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
@@ -22,8 +23,8 @@ class ProductScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Read from data source
-    final product =
-        kTestProducts.firstWhere((product) => product.id == productId);
+    final product = FakeProductsRepository.instance.getProduct(productId);
+
     return Scaffold(
       appBar: const HomeAppBar(),
       body: product == null

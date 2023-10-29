@@ -1,8 +1,7 @@
 import 'dart:math';
 
 import 'package:go_router/go_router.dart';
-import 'package:nut_products_e_shop/src/constants/test_products.dart';
-import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_screen.dart';
+import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
@@ -17,7 +16,8 @@ class ProductsGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // TODO: Read from data source
-    const products = kTestProducts;
+    final products = FakeProductsRepository.instance.getProducts();
+
     return products.isEmpty
         ? Center(
             child: Text(
