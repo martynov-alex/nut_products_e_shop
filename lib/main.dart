@@ -9,11 +9,11 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // turn off the # in the URLs on the web
+  // Turn off the # in the URLs on the web
   usePathUrlStrategy();
 
-  // ensure URL changes in the address bar when using push / pushNamed
-  // more info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
+  // Ensure URL changes in the address bar when using push / pushNamed
+  // More info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
   GoRouter.optionURLReflectsImperativeAPIs = true;
 
   // * Register error handlers. For more info, see:
