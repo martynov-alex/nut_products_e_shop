@@ -31,7 +31,7 @@ class ShoppingCartItem extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final productsRepository = ref.watch(fakeProductsRepositoryProvider);
+    final productsRepository = ref.watch(productsRepositoryProvider);
     final product = productsRepository.getProduct(item.productId)!;
 
     return Padding(

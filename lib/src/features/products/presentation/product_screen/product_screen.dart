@@ -26,7 +26,7 @@ class ProductScreen extends StatelessWidget {
       appBar: const HomeAppBar(),
       body: Consumer(
         builder: (context, ref, _) {
-          final productsRepository = ref.watch(fakeProductsRepositoryProvider);
+          final productsRepository = ref.watch(productsRepositoryProvider);
           final product = productsRepository.getProduct(productId);
 
           return product == null
