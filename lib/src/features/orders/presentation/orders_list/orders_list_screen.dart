@@ -1,9 +1,9 @@
-import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
 import 'package:nut_products_e_shop/src/features/orders/presentation/orders_list/order_card.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Shows the list of orders placed by the signed-in user.
 class OrdersListScreen extends StatelessWidget {

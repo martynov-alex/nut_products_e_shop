@@ -1,9 +1,9 @@
-import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
-import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_review_card.dart';
+import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
+import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_review_card.dart';
 
 /// Shows the list of reviews for a given product ID
 class ProductReviewsList extends StatelessWidget {

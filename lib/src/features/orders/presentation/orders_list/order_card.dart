@@ -1,10 +1,10 @@
-import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
-import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
+import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
 import 'package:nut_products_e_shop/src/features/orders/presentation/orders_list/order_item_list_tile.dart';
 import 'package:nut_products_e_shop/src/features/orders/presentation/orders_list/order_status_label.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 

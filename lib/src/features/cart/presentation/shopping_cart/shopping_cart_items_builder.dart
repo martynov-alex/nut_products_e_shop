@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
+import 'package:nut_products_e_shop/src/common_widgets/decorated_box_with_shadow.dart';
+import 'package:nut_products_e_shop/src/common_widgets/empty_placeholder_widget.dart';
+import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
+import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
 import 'package:nut_products_e_shop/src/features/cart/presentation/cart_total/cart_total_with_cta.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/common_widgets/decorated_box_with_shadow.dart';
-import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
-import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
-import 'package:nut_products_e_shop/src/common_widgets/empty_placeholder_widget.dart';
 
 /// Responsive widget showing the cart items and the checkout button
 class ShoppingCartItemsBuilder extends StatelessWidget {

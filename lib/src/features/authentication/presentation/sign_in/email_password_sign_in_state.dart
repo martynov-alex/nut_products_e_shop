@@ -1,5 +1,5 @@
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/string_validators.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Form type for email & password authentication
 enum EmailPasswordSignInFormType { signIn, register }

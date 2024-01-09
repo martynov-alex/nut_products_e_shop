@@ -1,10 +1,10 @@
 import 'dart:io';
 
-import 'package:go_router/go_router.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Generic function to show a platform-aware Material or Cupertino dialog
 Future<bool?> showAlertDialog({

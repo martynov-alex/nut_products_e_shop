@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// Shopping cart icon with items count badge

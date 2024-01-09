@@ -1,12 +1,12 @@
+import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
+import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
+import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/orders/domain/purchase.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
-import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
-import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
-import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 
 /// Simple widget to show the product purchase date along with a button to
 /// leave a review.

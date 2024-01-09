@@ -1,7 +1,7 @@
-import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
+import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Button used to initiate the payment flow.
 class PaymentButton extends StatelessWidget {

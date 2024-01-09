@@ -1,8 +1,8 @@
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_scrollable_card.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// A page where the user can enter and submit all the address details.
 /// * This page is not yet in use. We will add it to the checkout flows later.

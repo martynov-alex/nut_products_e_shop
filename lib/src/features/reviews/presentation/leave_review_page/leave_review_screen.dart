@@ -1,12 +1,12 @@
-import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
-import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
+import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
+import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
-import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_rating_bar.dart';
+import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
+import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_rating_bar.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 class LeaveReviewScreen extends StatelessWidget {
   const LeaveReviewScreen({super.key, required this.productId});

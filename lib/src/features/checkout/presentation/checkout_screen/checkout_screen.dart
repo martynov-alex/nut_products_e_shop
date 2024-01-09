@@ -1,8 +1,8 @@
-import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/payment_page.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/email_password_sign_in_screen.dart';
+import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
+import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/payment_page.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// The two sub-routes that are presented as part of the checkout flow.
 /// TODO: add the address page as well (see [AddressScreen]).

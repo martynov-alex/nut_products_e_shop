@@ -1,11 +1,11 @@
-import 'package:go_router/go_router.dart';
-import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/common_widgets/action_text_button.dart';
+import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Simple account screen showing some user info and a logout button.
 class AccountScreen extends StatelessWidget {

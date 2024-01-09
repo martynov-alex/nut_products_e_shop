@@ -1,13 +1,13 @@
-import 'package:go_router/go_router.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_scrollable_card.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/string_validators.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Email & password sign in screen.
 /// Wraps the [EmailPasswordSignInContents] widget below with a [Scaffold] and

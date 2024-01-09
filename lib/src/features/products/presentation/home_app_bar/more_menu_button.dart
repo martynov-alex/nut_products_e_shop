@@ -1,7 +1,7 @@
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
 import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 enum PopupMenuOption {

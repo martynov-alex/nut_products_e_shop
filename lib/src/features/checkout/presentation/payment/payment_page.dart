@@ -1,8 +1,8 @@
-import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
 import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/payment_button.dart';
+import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
 import 'package:nut_products_e_shop/src/features/cart/presentation/shopping_cart/shopping_cart_item.dart';
 import 'package:nut_products_e_shop/src/features/cart/presentation/shopping_cart/shopping_cart_items_builder.dart';
+import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/payment_button.dart';
 
 /// Payment screen showing the items in the cart (with read-only quantities) and
 /// a button to checkout.
