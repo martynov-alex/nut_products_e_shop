@@ -1,14 +1,15 @@
 import 'dart:math';
 
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
-import 'package:nut_products_e_shop/src/common_widgets/error_message_widget.dart';
-import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_layout_grid/flutter_layout_grid.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+import 'package:nut_products_e_shop/src/common_widgets/async_value_widget.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/products_list/product_card.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// A widget that displays the list of products that match the search query.
@@ -19,7 +20,8 @@ class ProductsGrid extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final productsListValue = ref.watch(productsListStreamProvider);
 
-    return productsListValue.when(
+    return AsyncValueWidget<List<Product>>(
+      value: productsListValue,
       data: (products) => products.isEmpty
           ? Center(
               child: Text(
@@ -40,8 +42,6 @@ class ProductsGrid extends ConsumerWidget {
                 );
               },
             ),
-      error: (e, st) => Center(child: ErrorMessageWidget(e.toString())),
-      loading: () => const Center(child: CircularProgressIndicator()),
     );
   }
 }

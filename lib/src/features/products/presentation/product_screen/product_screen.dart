@@ -1,20 +1,20 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nut_products_e_shop/src/common_widgets/error_message_widget.dart';
-import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
-import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nut_products_e_shop/src/common_widgets/async_value_widget.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_image.dart';
+import 'package:nut_products_e_shop/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
-import 'package:nut_products_e_shop/src/features/products/presentation/home_app_bar/home_app_bar.dart';
-import 'package:nut_products_e_shop/src/common_widgets/empty_placeholder_widget.dart';
 import 'package:nut_products_e_shop/src/features/cart/presentation/add_to_cart/add_to_cart_widget.dart';
+import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
+import 'package:nut_products_e_shop/src/features/products/presentation/home_app_bar/home_app_bar.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/leave_review_action.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_reviews_list.dart';
-import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
+import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 
 /// Shows the product page for a given product ID.
 class ProductScreen extends StatelessWidget {
@@ -28,7 +28,8 @@ class ProductScreen extends StatelessWidget {
       body: Consumer(
         builder: (context, ref, _) {
           final productValue = ref.watch(productProvider(productId));
-          return productValue.when(
+          return AsyncValueWidget<Product?>(
+            value: productValue,
             data: (product) => product == null
                 ? EmptyPlaceholderWidget(
                     message: 'Product not found'.hardcoded,
@@ -42,8 +43,6 @@ class ProductScreen extends StatelessWidget {
                       ProductReviewsList(productId: productId),
                     ],
                   ),
-            error: (e, st) => Center(child: ErrorMessageWidget(e.toString())),
-            loading: () => const Center(child: CircularProgressIndicator()),
           );
         },
       ),
