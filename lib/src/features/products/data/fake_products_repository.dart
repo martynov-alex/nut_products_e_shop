@@ -8,11 +8,6 @@ import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 class FakeProductsRepository {
   final _products = kTestProducts;
 
-  List<Product> getProductsList() => _products;
-
-  Product? getProduct(String id) =>
-      _products.firstWhereOrNull((product) => product.id == id);
-
   Future<List<Product>> fetchProductsList() async {
     await Future.delayed(const Duration(seconds: 2));
     return Future.value(_products);
