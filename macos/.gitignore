@@ -1,6 +1,7 @@
 # Flutter-related
 **/Flutter/ephemeral/
 **/Pods/
+**/build/.last_build_id
 
 # Xcode-related
 **/dgph
