@@ -1,11 +1,12 @@
 import 'package:collection/collection.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/constants/test_products.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 
-class FakeProductsRepository {
-  FakeProductsRepository._();
-  static FakeProductsRepository instance = FakeProductsRepository._();
+final fakeProductsRepositoryProvider =
+    Provider<FakeProductsRepository>((ref) => FakeProductsRepository());
 
+class FakeProductsRepository {
   final _products = kTestProducts;
 
   List<Product> getProducts() => _products;
