@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:collection/collection.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/constants/test_products.dart';
@@ -34,17 +36,19 @@ final productsRepositoryProvider = Provider<FakeProductsRepository>((ref) {
   return FakeProductsRepository();
 });
 
-final productsListStreamProvider = StreamProvider<List<Product>>((ref) {
+final productsListStreamProvider =
+    StreamProvider.autoDispose<List<Product>>((ref) {
   final repository = ref.watch(productsRepositoryProvider);
   return repository.watchProductsList();
 });
 
-final productsListFutureProvider = FutureProvider<List<Product>>((ref) {
+final productsListFutureProvider =
+    FutureProvider.autoDispose<List<Product>>((ref) {
   final repository = ref.watch(productsRepositoryProvider);
   return repository.fetchProductsList();
 });
 
-final productProvider = StreamProvider.family<Product?, String>(
+final productProvider = StreamProvider.autoDispose.family<Product?, String>(
   (ref, id) {
     final repository = ref.watch(productsRepositoryProvider);
     return repository.watchProduct(id);
