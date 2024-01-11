@@ -48,12 +48,10 @@ class MoreMenuButton extends StatelessWidget {
                 ];
         },
         onSelected: (option) => switch (option) {
-              PopupMenuOption.signIn =>
-                context.pushNamed(AppRoutes.signIn.name),
-              PopupMenuOption.orders =>
-                context.pushNamed(AppRoutes.orders.name),
+              PopupMenuOption.signIn => context.goNamed(AppRoutes.signIn.name),
+              PopupMenuOption.orders => context.goNamed(AppRoutes.orders.name),
               PopupMenuOption.account =>
-                context.pushNamed(AppRoutes.account.name),
+                context.goNamed(AppRoutes.account.name),
             });
   }
 }

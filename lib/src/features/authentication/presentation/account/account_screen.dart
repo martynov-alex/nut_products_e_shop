@@ -40,7 +40,7 @@ class AccountScreen extends ConsumerWidget {
         title: Text('Account'.hardcoded),
         actions: [
           SizedBox(
-            width: Sizes.p128,
+            width: 136,
             child: Center(
               child: state.isLoading
                   ? const SizedBox.square(

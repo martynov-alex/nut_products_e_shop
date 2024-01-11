@@ -41,7 +41,7 @@ class ShoppingCartScreen extends StatelessWidget {
         ),
         ctaBuilder: (_) => PrimaryButton(
           text: 'Checkout'.hardcoded,
-          onPressed: () => context.pushNamed(AppRoutes.checkout.name),
+          onPressed: () => context.goNamed(AppRoutes.checkout.name),
         ),
       ),
     );

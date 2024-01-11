@@ -47,18 +47,18 @@ class HomeAppBar extends ConsumerWidget implements PreferredSizeWidget {
             ActionTextButton(
               key: MoreMenuButton.ordersKey,
               text: 'Orders'.hardcoded,
-              onPressed: () => context.pushNamed(AppRoutes.orders.name),
+              onPressed: () => context.goNamed(AppRoutes.orders.name),
             ),
             ActionTextButton(
               key: MoreMenuButton.accountKey,
               text: 'Account'.hardcoded,
-              onPressed: () => context.pushNamed(AppRoutes.account.name),
+              onPressed: () => context.goNamed(AppRoutes.account.name),
             ),
           ] else
             ActionTextButton(
               key: MoreMenuButton.signInKey,
               text: 'Sign In'.hardcoded,
-              onPressed: () => context.pushNamed(AppRoutes.signIn.name),
+              onPressed: () => context.goNamed(AppRoutes.signIn.name),
             )
         ],
       );
