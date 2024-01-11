@@ -8,6 +8,7 @@ import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/account/account_screen_controller.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
+import 'package:nut_products_e_shop/src/utils/async_value_ui.dart';
 
 /// Simple account screen showing some user info and a logout button.
 class AccountScreen extends ConsumerWidget {
@@ -16,15 +17,10 @@ class AccountScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // error listener
-    ref.listen(accountScreenControllerProvider, (previousState, state) {
-      if (state.hasError && !state.isLoading) {
-        showExceptionAlertDialog(
-          context: context,
-          title: 'Error'.hardcoded,
-          exception: state.error,
-        );
-      }
-    });
+    ref.listen<AsyncValue<void>>(
+      accountScreenControllerProvider,
+      (_, state) => state.showAlertDialogOnError(context),
+    );
 
     Future<void> signOut() async {
       // * Get the navigator beforehand to prevent this warning:

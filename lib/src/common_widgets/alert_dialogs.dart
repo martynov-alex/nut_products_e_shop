@@ -54,12 +54,12 @@ Future<bool?> showAlertDialog({
 Future<void> showExceptionAlertDialog({
   required BuildContext context,
   required String title,
-  required dynamic exception,
+  required String message,
 }) =>
     showAlertDialog(
       context: context,
       title: title,
-      content: exception.toString(),
+      content: message,
       defaultActionText: 'OK'.hardcoded,
     );
 
