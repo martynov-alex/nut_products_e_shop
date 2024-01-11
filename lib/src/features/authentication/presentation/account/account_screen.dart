@@ -1,40 +1,68 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/common_widgets/action_text_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
+import 'package:nut_products_e_shop/src/features/authentication/presentation/account/account_screen_controller.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Simple account screen showing some user info and a logout button.
-class AccountScreen extends StatelessWidget {
+class AccountScreen extends ConsumerWidget {
   const AccountScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    // error listener
+    ref.listen(accountScreenControllerProvider, (previousState, state) {
+      if (state.hasError && !state.isLoading) {
+        showExceptionAlertDialog(
+          context: context,
+          title: 'Error'.hardcoded,
+          exception: state.error,
+        );
+      }
+    });
+
+    Future<void> signOut() async {
+      // * Get the navigator beforehand to prevent this warning:
+      // * Don't use 'BuildContext's across async gaps.
+      // * More info here: https://youtu.be/bzWaMpD1LHY
+      final goRouter = GoRouter.of(context);
+      final logout = await showAlertDialog(
+        context: context,
+        title: 'Are you sure?'.hardcoded,
+        cancelActionText: 'Cancel'.hardcoded,
+        defaultActionText: 'Logout'.hardcoded,
+      );
+      if (logout == true) {
+        final success =
+            await ref.read(accountScreenControllerProvider.notifier).signOut();
+        if (success) goRouter.pop();
+      }
+    }
+
+    final state = ref.watch(accountScreenControllerProvider);
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Account'.hardcoded),
         actions: [
-          ActionTextButton(
-            text: 'Logout'.hardcoded,
-            onPressed: () async {
-              // * Get the navigator beforehand to prevent this warning:
-              // * Don't use 'BuildContext's across async gaps.
-              // * More info here: https://youtu.be/bzWaMpD1LHY
-              final goRouter = GoRouter.of(context);
-              final logout = await showAlertDialog(
-                context: context,
-                title: 'Are you sure?'.hardcoded,
-                cancelActionText: 'Cancel'.hardcoded,
-                defaultActionText: 'Logout'.hardcoded,
-              );
-              if (logout == true) {
-                // TODO: Sign out the user.
-                goRouter.pop();
-              }
-            },
+          SizedBox(
+            width: Sizes.p128,
+            child: Center(
+              child: state.isLoading
+                  ? const SizedBox.square(
+                      dimension: Sizes.p24,
+                      child: CircularProgressIndicator(),
+                    )
+                  : ActionTextButton(
+                      text: 'Logout'.hardcoded,
+                      onPressed: state.isLoading ? null : signOut,
+                    ),
+            ),
           ),
         ],
       ),
