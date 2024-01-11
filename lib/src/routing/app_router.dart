@@ -36,14 +36,15 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     debugLogDiagnostics: false,
     redirect: (context, state) {
       final isLoggedIn = authRepository.currentUser != null;
+      final path = state.uri.path;
 
       if (isLoggedIn) {
-        if (state.uri.path == '/${AppRoutes.signIn.path}') {
+        if (path == '/${AppRoutes.signIn.path}') {
           return AppRoutes.home.path;
         }
       } else {
-        if (state.uri.path == '/${AppRoutes.account.path}' ||
-            state.uri.path == '/${AppRoutes.orders.path}') {
+        if (path == '/${AppRoutes.account.path}' ||
+            path == '/${AppRoutes.orders.path}') {
           return AppRoutes.home.path;
         }
       }
