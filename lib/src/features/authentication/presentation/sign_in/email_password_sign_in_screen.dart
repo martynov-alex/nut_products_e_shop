@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_scrollable_card.dart';
@@ -29,7 +28,6 @@ class EmailPasswordSignInScreen extends StatelessWidget {
       appBar: AppBar(title: Text('Sign In'.hardcoded)),
       body: EmailPasswordSignInContents(
         formType: formType,
-        onSignedIn: () => context.pop(),
       ),
     );
   }

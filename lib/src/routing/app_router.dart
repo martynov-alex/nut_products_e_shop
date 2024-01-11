@@ -11,6 +11,7 @@ import 'package:nut_products_e_shop/src/features/orders/presentation/orders_list
 import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_screen.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/products_list/products_list_screen.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_page/leave_review_screen.dart';
+import 'package:nut_products_e_shop/src/routing/go_router_refresh_stream.dart';
 import 'package:nut_products_e_shop/src/routing/not_found_screen.dart';
 
 enum AppRoutes {
@@ -32,9 +33,9 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
 
   return GoRouter(
-    initialLocation: '/',
+    initialLocation: AppRoutes.home.path,
     debugLogDiagnostics: false,
-    redirect: (context, state) {
+    redirect: (_, state) {
       final isLoggedIn = authRepository.currentUser != null;
       final path = state.uri.path;
 
@@ -50,6 +51,7 @@ final goRouterProvider = Provider<GoRouter>((ref) {
       }
       return null;
     },
+    refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
         path: AppRoutes.home.path,
