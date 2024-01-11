@@ -47,11 +47,15 @@ class ValidatorInputFormatter implements TextInputFormatter {
 }
 
 class EmailEditingRegexValidator extends RegexValidator {
-  EmailEditingRegexValidator() : super(regexSource: '^(|\\S)+\$');
+  EmailEditingRegexValidator() : super(regexSource: r'^(|\S)+$');
 }
 
 class EmailSubmitRegexValidator extends RegexValidator {
-  EmailSubmitRegexValidator() : super(regexSource: '^\\S+@\\S+\\.\\S+\$');
+  EmailSubmitRegexValidator() : super(regexSource: r'^\S+@\S+\.\S+$');
+}
+
+class PasswordSubmitRegexValidator extends RegexValidator {
+  PasswordSubmitRegexValidator() : super(regexSource: r'^\S{8,}$');
 }
 
 class NonEmptyStringValidator extends StringValidator {

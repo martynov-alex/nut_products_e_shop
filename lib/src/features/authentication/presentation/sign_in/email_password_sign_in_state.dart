@@ -8,7 +8,7 @@ enum EmailPasswordSignInFormType { signIn, register }
 mixin EmailAndPasswordValidators {
   final StringValidator emailSubmitValidator = EmailSubmitRegexValidator();
   final StringValidator passwordRegisterSubmitValidator =
-      MinLengthStringValidator(8);
+      PasswordSubmitRegexValidator();
   final StringValidator passwordSignInSubmitValidator =
       NonEmptyStringValidator();
 }
@@ -34,9 +34,8 @@ class EmailPasswordSignInState with EmailAndPasswordValidators {
   }
 
   @override
-  String toString() {
-    return 'EmailPasswordSignInState(formType: $formType, isLoading: $isLoading)';
-  }
+  String toString() =>
+      'EmailPasswordSignInState(formType: $formType, isLoading: $isLoading)';
 
   @override
   bool operator ==(Object other) {
@@ -48,71 +47,53 @@ class EmailPasswordSignInState with EmailAndPasswordValidators {
   }
 
   @override
-  int get hashCode {
-    return formType.hashCode ^ isLoading.hashCode;
-  }
+  int get hashCode => formType.hashCode ^ isLoading.hashCode;
 }
 
 extension EmailPasswordSignInStateX on EmailPasswordSignInState {
-  String get passwordLabelText {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return 'Password (8+ characters)'.hardcoded;
-    } else {
-      return 'Password'.hardcoded;
-    }
-  }
+  String get passwordLabelText => switch (formType) {
+        EmailPasswordSignInFormType.register =>
+          'Password (8+ characters without spaces)'.hardcoded,
+        EmailPasswordSignInFormType.signIn => 'Password'.hardcoded,
+      };
 
-  // Getters
-  String get primaryButtonText {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return 'Create an account'.hardcoded;
-    } else {
-      return 'Sign in'.hardcoded;
-    }
-  }
+  String get primaryButtonText => switch (formType) {
+        EmailPasswordSignInFormType.register => 'Create an account'.hardcoded,
+        EmailPasswordSignInFormType.signIn => 'Sign in'.hardcoded,
+      };
 
-  String get secondaryButtonText {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return 'Have an account? Sign in'.hardcoded;
-    } else {
-      return 'Need an account? Register'.hardcoded;
-    }
-  }
+  String get secondaryButtonText => switch (formType) {
+        EmailPasswordSignInFormType.register =>
+          'Have an account? Sign in'.hardcoded,
+        EmailPasswordSignInFormType.signIn =>
+          'Need an account? Register'.hardcoded,
+      };
 
-  EmailPasswordSignInFormType get secondaryActionFormType {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return EmailPasswordSignInFormType.signIn;
-    } else {
-      return EmailPasswordSignInFormType.register;
-    }
-  }
+  String get errorAlertTitle => switch (formType) {
+        EmailPasswordSignInFormType.register => 'Registration failed'.hardcoded,
+        EmailPasswordSignInFormType.signIn => 'Sign in failed'.hardcoded,
+      };
 
-  String get errorAlertTitle {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return 'Registration failed'.hardcoded;
-    } else {
-      return 'Sign in failed'.hardcoded;
-    }
-  }
+  String get title => switch (formType) {
+        EmailPasswordSignInFormType.register => 'Register'.hardcoded,
+        EmailPasswordSignInFormType.signIn => 'Sign in'.hardcoded,
+      };
 
-  String get title {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return 'Register'.hardcoded;
-    } else {
-      return 'Sign in'.hardcoded;
-    }
-  }
+  EmailPasswordSignInFormType get secondaryActionFormType => switch (formType) {
+        EmailPasswordSignInFormType.register =>
+          EmailPasswordSignInFormType.signIn,
+        EmailPasswordSignInFormType.signIn =>
+          EmailPasswordSignInFormType.register,
+      };
 
-  bool canSubmitEmail(String email) {
-    return emailSubmitValidator.isValid(email);
-  }
+  bool canSubmitEmail(String email) => emailSubmitValidator.isValid(email);
 
-  bool canSubmitPassword(String password) {
-    if (formType == EmailPasswordSignInFormType.register) {
-      return passwordRegisterSubmitValidator.isValid(password);
-    }
-    return passwordSignInSubmitValidator.isValid(password);
-  }
+  bool canSubmitPassword(String password) => switch (formType) {
+        EmailPasswordSignInFormType.register =>
+          passwordRegisterSubmitValidator.isValid(password),
+        EmailPasswordSignInFormType.signIn =>
+          passwordSignInSubmitValidator.isValid(password),
+      };
 
   String? emailErrorText(String email) {
     final bool showErrorText = !canSubmitEmail(email);
@@ -126,7 +107,7 @@ extension EmailPasswordSignInStateX on EmailPasswordSignInState {
     final bool showErrorText = !canSubmitPassword(password);
     final String errorText = password.isEmpty
         ? 'Password can\'t be empty'.hardcoded
-        : 'Password is too short'.hardcoded;
+        : 'Password is too short or contains spaces'.hardcoded;
     return showErrorText ? errorText : null;
   }
 }
