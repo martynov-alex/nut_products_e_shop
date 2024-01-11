@@ -4,8 +4,9 @@ import 'package:nut_products_e_shop/src/features/cart/presentation/cart_total/ca
 
 /// Widget for showing the shopping cart total with a checkout button
 class CartTotalWithCTA extends StatelessWidget {
-  const CartTotalWithCTA({super.key, required this.ctaBuilder});
   final WidgetBuilder ctaBuilder;
+
+  const CartTotalWithCTA({required this.ctaBuilder, super.key});
 
   @override
   Widget build(BuildContext context) {

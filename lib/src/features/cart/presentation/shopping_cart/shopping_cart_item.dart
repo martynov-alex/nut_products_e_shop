@@ -11,18 +11,13 @@ import 'package:nut_products_e_shop/src/common_widgets/item_quantity_selector.da
 import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
+import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/payment_page.dart';
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Shows a shopping cart item (or loading/error UI if needed)
 class ShoppingCartItem extends ConsumerWidget {
-  const ShoppingCartItem({
-    super.key,
-    required this.item,
-    required this.itemIndex,
-    this.isEditable = true,
-  });
   final Item item;
   final int itemIndex;
 
@@ -30,6 +25,13 @@ class ShoppingCartItem extends ConsumerWidget {
   /// if false, the quantity will be shown as a read-only label (used in the
   /// [PaymentPage])
   final bool isEditable;
+
+  const ShoppingCartItem({
+    required this.item,
+    required this.itemIndex,
+    this.isEditable = true,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -61,28 +63,28 @@ class ShoppingCartItem extends ConsumerWidget {
 
 /// Shows a shopping cart item for a given product
 class ShoppingCartItemContents extends StatelessWidget {
-  const ShoppingCartItemContents({
-    super.key,
-    required this.product,
-    required this.item,
-    required this.itemIndex,
-    required this.isEditable,
-  });
   final Product product;
   final Item item;
   final int itemIndex;
   final bool isEditable;
+
+  const ShoppingCartItemContents({
+    required this.product,
+    required this.item,
+    required this.itemIndex,
+    required this.isEditable,
+    super.key,
+  });
 
   // * Keys for testing using find.byKey()
   static Key deleteKey(int index) => Key('delete-$index');
 
   @override
   Widget build(BuildContext context) {
-    // TODO: error handling
-    // TODO: Inject formatter
+    // TODO(martynov): error handling
+    // TODO(martynov): Inject formatter
     final priceFormatted = NumberFormat.simpleCurrency().format(product.price);
     return ResponsiveTwoColumnLayout(
-      startFlex: 1,
       endFlex: 2,
       breakpoint: 320,
       startContent: CustomImage(imageUrl: product.imageUrl),
@@ -95,38 +97,37 @@ class ShoppingCartItemContents extends StatelessWidget {
           Text(priceFormatted,
               style: Theme.of(context).textTheme.headlineSmall),
           gapH24,
-          isEditable
-              // show the quantity selector and a delete button
-              ? Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    ItemQuantitySelector(
-                      quantity: item.quantity,
-                      maxQuantity: min(product.availableQuantity, 10),
-                      itemIndex: itemIndex,
-                      // TODO: Implement onChanged
-                      onChanged: (value) {
-                        showNotImplementedAlertDialog(context: context);
-                      },
-                    ),
-                    IconButton(
-                      key: deleteKey(itemIndex),
-                      icon: Icon(Icons.delete, color: Colors.red[700]),
-                      // TODO: Implement onPressed
-                      onPressed: () {
-                        showNotImplementedAlertDialog(context: context);
-                      },
-                    ),
-                    const Spacer(),
-                  ],
-                )
-              // else, show the quantity as a read-only label
-              : Padding(
-                  padding: const EdgeInsets.symmetric(vertical: Sizes.p8),
-                  child: Text(
-                    'Quantity: ${item.quantity}'.hardcoded,
-                  ),
+          if (isEditable)
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ItemQuantitySelector(
+                  quantity: item.quantity,
+                  maxQuantity: min(product.availableQuantity, 10),
+                  itemIndex: itemIndex,
+                  // TODO(martynov): Implement onChanged
+                  onChanged: (value) {
+                    showNotImplementedAlertDialog(context: context);
+                  },
                 ),
+                IconButton(
+                  key: deleteKey(itemIndex),
+                  icon: Icon(Icons.delete, color: Colors.red[700]),
+                  // TODO(martynov): Implement onPressed
+                  onPressed: () {
+                    showNotImplementedAlertDialog(context: context);
+                  },
+                ),
+                const Spacer(),
+              ],
+            )
+          else
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: Sizes.p8),
+              child: Text(
+                'Quantity: ${item.quantity}'.hardcoded,
+              ),
+            ),
         ],
       ),
     );

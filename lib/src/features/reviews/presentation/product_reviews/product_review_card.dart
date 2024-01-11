@@ -11,7 +11,7 @@ class ProductReviewCard extends StatelessWidget {
   final Review review;
   @override
   Widget build(BuildContext context) {
-    // TODO: Inject date formatter
+    // TODO(martynov): Inject date formatter
     final dateFormatted = kDateFormatter.format(review.date);
     return Card(
       child: Padding(
@@ -26,7 +26,7 @@ class ProductReviewCard extends StatelessWidget {
                   initialRating: review.score,
                   ignoreGestures: true,
                   itemSize: 20,
-                  // TODO: Implement onRatingUpdate
+                  // TODO(martynov): Implement onRatingUpdate
                   onRatingUpdate: (value) {
                     showNotImplementedAlertDialog(context: context);
                   },

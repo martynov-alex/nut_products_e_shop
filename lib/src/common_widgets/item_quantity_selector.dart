@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 
-/// Item quantity selector with +/- buttons and a text value in the middle
+/// Item quantity selector with +/- buttons and a text value in the middle.
 class ItemQuantitySelector extends StatelessWidget {
-  const ItemQuantitySelector({
-    super.key,
-    required this.quantity,
-    this.maxQuantity = 10,
-    this.itemIndex,
-    this.onChanged,
-  });
   final int quantity;
   final int maxQuantity;
   final int? itemIndex;
   final ValueChanged<int>? onChanged;
+
+  const ItemQuantitySelector({
+    required this.quantity,
+    this.maxQuantity = 10,
+    this.itemIndex,
+    this.onChanged,
+    super.key,
+  });
 
   // * Keys for testing using find.byKey()
   static Key decrementKey([int? index]) =>
@@ -27,15 +28,11 @@ class ItemQuantitySelector extends StatelessWidget {
   Widget build(BuildContext context) {
     return DecoratedBox(
       decoration: BoxDecoration(
-        border: Border.all(
-          color: Colors.black54,
-          width: 1,
-        ),
+        border: Border.all(color: Colors.black54),
         borderRadius: const BorderRadius.all(Radius.circular(Sizes.p24)),
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           IconButton(
             key: decrementKey(itemIndex),

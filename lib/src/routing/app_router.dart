@@ -34,7 +34,6 @@ final goRouterProvider = Provider<GoRouter>((ref) {
 
   return GoRouter(
     initialLocation: AppRoutes.home.path,
-    debugLogDiagnostics: false,
     redirect: (_, state) {
       final isLoggedIn = authRepository.currentUser != null;
       final path = state.uri.path;

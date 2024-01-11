@@ -3,13 +3,8 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 /// Custom product rating widget
 class ProductRatingBar extends StatelessWidget {
-  const ProductRatingBar({
-    super.key,
-    this.initialRating = 0.0,
-    this.itemSize = 40,
-    this.ignoreGestures = false,
-    required this.onRatingUpdate,
-  });
+  /// callback called when the rating changes
+  final ValueChanged<double> onRatingUpdate;
 
   /// initial rating value
   final double initialRating;
@@ -20,8 +15,13 @@ class ProductRatingBar extends StatelessWidget {
   /// if true, the widget won't be interactive
   final bool ignoreGestures;
 
-  /// callback called when the rating changes
-  final ValueChanged<double> onRatingUpdate;
+  const ProductRatingBar({
+    required this.onRatingUpdate,
+    this.initialRating = 0.0,
+    this.itemSize = 40,
+    this.ignoreGestures = false,
+    super.key,
+  });
 
   // * Keys for testing using find.byKey()
   static Key starRatingKey(int index) => Key('stars-$index');

@@ -4,8 +4,9 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Shows the status of the order
 class OrderStatusLabel extends StatelessWidget {
-  const OrderStatusLabel({super.key, required this.order});
   final Order order;
+
+  const OrderStatusLabel({required this.order, super.key});
 
   @override
   Widget build(BuildContext context) {

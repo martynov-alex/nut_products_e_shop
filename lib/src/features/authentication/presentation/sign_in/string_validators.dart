@@ -7,14 +7,15 @@ abstract class StringValidator {
 }
 
 class RegexValidator implements StringValidator {
-  RegexValidator({required this.regexSource});
   final String regexSource;
+
+  RegexValidator({required this.regexSource});
 
   @override
   bool isValid(String value) {
     try {
       // https://regex101.com/
-      final RegExp regex = RegExp(regexSource);
+      final regex = RegExp(regexSource);
       final Iterable<Match> matches = regex.allMatches(value);
       for (final match in matches) {
         if (match.start == 0 && match.end == value.length) {
@@ -22,7 +23,7 @@ class RegexValidator implements StringValidator {
         }
       }
       return false;
-    } catch (e) {
+    } on Exception catch (e) {
       // Invalid regex
       assert(false, e.toString());
       return true;
@@ -31,14 +32,15 @@ class RegexValidator implements StringValidator {
 }
 
 class ValidatorInputFormatter implements TextInputFormatter {
-  ValidatorInputFormatter({required this.editingValidator});
   final StringValidator editingValidator;
+
+  ValidatorInputFormatter({required this.editingValidator});
 
   @override
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
-    final bool oldValueValid = editingValidator.isValid(oldValue.text);
-    final bool newValueValid = editingValidator.isValid(newValue.text);
+    final oldValueValid = editingValidator.isValid(oldValue.text);
+    final newValueValid = editingValidator.isValid(newValue.text);
     if (oldValueValid && !newValueValid) {
       return oldValue;
     }
@@ -66,8 +68,9 @@ class NonEmptyStringValidator extends StringValidator {
 }
 
 class MinLengthStringValidator extends StringValidator {
-  MinLengthStringValidator(this.minLength);
   final int minLength;
+
+  MinLengthStringValidator(this.minLength);
 
   @override
   bool isValid(String value) {

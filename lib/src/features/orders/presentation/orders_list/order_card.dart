@@ -10,15 +10,16 @@ import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Shows all the details for a given order
 class OrderCard extends StatelessWidget {
-  const OrderCard({super.key, required this.order});
   final Order order;
+
+  const OrderCard({required this.order, super.key});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
       shape: RoundedRectangleBorder(
-        side: BorderSide(width: 1, color: Colors.grey[400]!),
+        side: BorderSide(color: Colors.grey[400]!),
         borderRadius: const BorderRadius.all(Radius.circular(Sizes.p8)),
       ),
       child: Column(
@@ -36,14 +37,15 @@ class OrderCard extends StatelessWidget {
 /// - Total order amount
 /// - Order date
 class OrderHeader extends StatelessWidget {
-  const OrderHeader({super.key, required this.order});
   final Order order;
+
+  const OrderHeader({required this.order, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Inject currency formatter
+    // TODO(martynov): Inject currency formatter
     final totalFormatted = kCurrencyFormatter.format(order.total);
-    // TODO: Inject date formatter
+    // TODO(martynov): Inject date formatter
     final dateFormatted = kDateFormatter.format(order.orderDate);
     return Container(
       color: Colors.grey[200],
@@ -86,8 +88,9 @@ class OrderHeader extends StatelessWidget {
 
 /// List of items in the order
 class OrderItemsList extends StatelessWidget {
-  const OrderItemsList({super.key, required this.order});
   final Order order;
+
+  const OrderItemsList({required this.order, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +101,7 @@ class OrderItemsList extends StatelessWidget {
           padding: const EdgeInsets.all(Sizes.p16),
           child: OrderStatusLabel(order: order),
         ),
-        for (var entry in order.items.entries)
+        for (final entry in order.items.entries)
           OrderItemListTile(
             item: Item(productId: entry.key, quantity: entry.value),
           ),

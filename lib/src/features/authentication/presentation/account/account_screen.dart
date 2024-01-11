@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/common_widgets/action_text_button.dart';
@@ -28,8 +30,8 @@ class AccountScreen extends ConsumerWidget {
         cancelActionText: 'Cancel'.hardcoded,
         defaultActionText: 'Logout'.hardcoded,
       );
-      if (logout == true) {
-        ref.read(accountScreenControllerProvider.notifier).signOut();
+      if (logout ?? false) {
+        unawaited(ref.read(accountScreenControllerProvider.notifier).signOut());
       }
     }
 

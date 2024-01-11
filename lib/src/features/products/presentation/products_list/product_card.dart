@@ -8,16 +8,21 @@ import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 
 /// Used to show a single product inside a card.
 class ProductCard extends StatelessWidget {
-  const ProductCard({super.key, required this.product, this.onPressed});
   final Product product;
   final VoidCallback? onPressed;
+
+  const ProductCard({
+    required this.product,
+    this.onPressed,
+    super.key,
+  });
 
   // * Keys for testing using find.byKey()
   static const productCardKey = Key('product-card');
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Inject formatter
+    // TODO(martynov): Inject formatter
     final priceFormatted = kCurrencyFormatter.format(product.price);
     return Card(
       child: InkWell(

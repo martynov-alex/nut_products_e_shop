@@ -18,8 +18,9 @@ import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 
 /// Shows the product page for a given product ID.
 class ProductScreen extends StatelessWidget {
-  const ProductScreen({super.key, required this.productId});
   final String productId;
+
+  const ProductScreen({required this.productId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -54,8 +55,9 @@ class ProductScreen extends StatelessWidget {
 /// - leave a review
 /// - add to cart
 class ProductDetails extends StatelessWidget {
-  const ProductDetails({super.key, required this.product});
   final Product product;
+
+  const ProductDetails({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {

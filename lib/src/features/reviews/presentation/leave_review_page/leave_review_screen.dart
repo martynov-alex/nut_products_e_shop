@@ -9,12 +9,13 @@ import 'package:nut_products_e_shop/src/features/reviews/presentation/product_re
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 class LeaveReviewScreen extends StatelessWidget {
-  const LeaveReviewScreen({super.key, required this.productId});
   final String productId;
+
+  const LeaveReviewScreen({required this.productId, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     const review = null;
     return Scaffold(
       appBar: AppBar(
@@ -23,6 +24,7 @@ class LeaveReviewScreen extends StatelessWidget {
       body: ResponsiveCenter(
         maxContentWidth: Breakpoint.tablet,
         padding: const EdgeInsets.all(Sizes.p16),
+        // ignore: avoid_redundant_argument_values
         child: LeaveReviewForm(productId: productId, review: review),
       ),
     );
@@ -30,9 +32,14 @@ class LeaveReviewScreen extends StatelessWidget {
 }
 
 class LeaveReviewForm extends StatefulWidget {
-  const LeaveReviewForm({super.key, required this.productId, this.review});
   final String productId;
   final Review? review;
+
+  const LeaveReviewForm({
+    required this.productId,
+    this.review,
+    super.key,
+  });
 
   // * Keys for testing using find.byKey()
   static const reviewCommentKey = Key('reviewComment');
@@ -70,7 +77,7 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
     // if (previousReview == null ||
     //     _rating != previousReview.score ||
     //     _controller.text != previousReview.comment) {
-    //   // TODO: Submit review
+    //     Submit review
     // }
     // Navigator.of(context).pop();
   }
@@ -107,7 +114,8 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
         gapH32,
         PrimaryButton(
           text: 'Submit'.hardcoded,
-          // TODO: Loading state
+          // TODO(martynov): Loading state
+          // ignore: avoid_redundant_argument_values
           isLoading: false,
           onPressed: _rating == 0 ? null : _submitReview,
         )

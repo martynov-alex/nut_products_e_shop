@@ -11,7 +11,7 @@ class OrdersListScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     final orders = [
       Order(
         id: 'abc',
@@ -42,7 +42,7 @@ class OrdersListScreen extends StatelessWidget {
               slivers: <Widget>[
                 SliverList(
                   delegate: SliverChildBuilderDelegate(
-                    (BuildContext context, int index) => ResponsiveCenter(
+                    (context, index) => ResponsiveCenter(
                       padding: const EdgeInsets.all(Sizes.p8),
                       child: OrderCard(
                         order: orders[index],

@@ -6,6 +6,8 @@ import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/home_app_bar/more_menu_button.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/home_app_bar/shopping_cart_icon.dart';
+import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_screen.dart';
+import 'package:nut_products_e_shop/src/features/products/presentation/products_list/products_list_screen.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 

@@ -27,19 +27,19 @@ void main() async {
 
 void registerErrorHandlers() {
   // * Show some error UI if any uncaught exception happens
-  FlutterError.onError = (FlutterErrorDetails details) {
+  FlutterError.onError = (details) {
     FlutterError.presentError(details);
     debugPrint(details.toString());
   };
 
   // * Handle errors from the underlying platform/OS
-  PlatformDispatcher.instance.onError = (Object error, StackTrace stack) {
+  PlatformDispatcher.instance.onError = (error, stack) {
     debugPrint(error.toString());
     return true;
   };
 
   // * Show some error UI when any widget in the app fails to build
-  ErrorWidget.builder = (FlutterErrorDetails details) {
+  ErrorWidget.builder = (details) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red,

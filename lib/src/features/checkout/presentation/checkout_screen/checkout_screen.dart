@@ -5,7 +5,7 @@ import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/p
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// The two sub-routes that are presented as part of the checkout flow.
-/// TODO: add the address page as well (see [AddressScreen]).
+// TODO(martynov): add the address page as well (see [AddressScreen])
 enum CheckoutSubRoute { register, payment }
 
 /// This is the root widget of the checkout flow, which is composed of 2 pages:

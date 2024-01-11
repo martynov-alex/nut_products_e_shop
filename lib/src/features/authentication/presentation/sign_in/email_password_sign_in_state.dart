@@ -1,4 +1,5 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/string_validators.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
@@ -16,14 +17,15 @@ mixin EmailAndPasswordValidators {
 }
 
 /// State class for the email & password form.
+@immutable
 class EmailPasswordSignInState with EmailAndPasswordValidators {
+  final EmailPasswordSignInFormType formType;
+  final AsyncValue<void> value;
+
   EmailPasswordSignInState({
     this.formType = EmailPasswordSignInFormType.signIn,
     this.value = const AsyncValue.data(null),
   });
-
-  final EmailPasswordSignInFormType formType;
-  final AsyncValue<void> value;
 
   bool get isLoading => value.isLoading;
 
@@ -98,17 +100,17 @@ extension EmailPasswordSignInStateX on EmailPasswordSignInState {
       };
 
   String? emailErrorText(String email) {
-    final bool showErrorText = !canSubmitEmail(email);
-    final String errorText = email.isEmpty
-        ? 'Email can\'t be empty'.hardcoded
+    final showErrorText = !canSubmitEmail(email);
+    final errorText = email.isEmpty
+        ? "Email can't be empty".hardcoded
         : 'Invalid email'.hardcoded;
     return showErrorText ? errorText : null;
   }
 
   String? passwordErrorText(String password) {
-    final bool showErrorText = !canSubmitPassword(password);
-    final String errorText = password.isEmpty
-        ? 'Password can\'t be empty'.hardcoded
+    final showErrorText = !canSubmitPassword(password);
+    final errorText = password.isEmpty
+        ? "Password can't be empty".hardcoded
         : 'Password is too short or contains spaces'.hardcoded;
     return showErrorText ? errorText : null;
   }

@@ -7,9 +7,9 @@ class CartTotalText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     const cartTotal = 104.0;
-    // TODO: Inject formatter
+    // TODO(martynov): Inject formatter
     final totalFormatted = kCurrencyFormatter.format(cartTotal);
     return Text(
       'Total: $totalFormatted',

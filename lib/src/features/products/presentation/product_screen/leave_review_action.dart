@@ -11,15 +11,18 @@ import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 /// Simple widget to show the product purchase date along with a button to
 /// leave a review.
 class LeaveReviewAction extends StatelessWidget {
-  const LeaveReviewAction({super.key, required this.productId});
+  const LeaveReviewAction({
+    required this.productId,
+    super.key,
+  });
   final String productId;
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     final purchase = Purchase(orderId: 'abc', orderDate: DateTime.now());
     if (purchase != null) {
-      // TODO: Inject date formatter
+      // TODO(martynov): Inject date formatter
       final dateFormatted = kDateFormatter.format(purchase.orderDate);
       return Column(
         children: [

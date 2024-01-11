@@ -15,8 +15,9 @@ import 'package:nut_products_e_shop/src/utils/async_value_ui.dart';
 /// Wraps the [EmailPasswordSignInContents] widget below with a [Scaffold] and
 /// [AppBar] with a title.
 class EmailPasswordSignInScreen extends StatelessWidget {
-  const EmailPasswordSignInScreen({super.key, required this.formType});
   final EmailPasswordSignInFormType formType;
+
+  const EmailPasswordSignInScreen({required this.formType, super.key});
 
   // * Keys for testing using find.byKey()
   static const emailKey = Key('email');
@@ -37,15 +38,16 @@ class EmailPasswordSignInScreen extends StatelessWidget {
 /// - sign in
 /// - register (create an account)
 class EmailPasswordSignInContents extends ConsumerStatefulWidget {
-  const EmailPasswordSignInContents({
-    super.key,
-    this.onSignedIn,
-    required this.formType,
-  });
-  final VoidCallback? onSignedIn;
-
   /// The default form type to use.
   final EmailPasswordSignInFormType formType;
+
+  final VoidCallback? onSignedIn;
+
+  const EmailPasswordSignInContents({
+    required this.formType,
+    this.onSignedIn,
+    super.key,
+  });
   @override
   ConsumerState<EmailPasswordSignInContents> createState() =>
       _EmailPasswordSignInContentsState();
@@ -80,7 +82,7 @@ class _EmailPasswordSignInContentsState
     setState(() => _submitted = true);
     // only submit the form if validation passes
     if (_formKey.currentState!.validate()) {
-      // TODO: Authentication logic
+      // TODO(martynov): Authentication logic
       final controller = ref.read(
           emailPasswordSignInControllerProvider(widget.formType).notifier);
       final success = await controller.submit(email, password);

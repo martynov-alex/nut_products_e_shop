@@ -10,15 +10,16 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Responsive widget showing the cart items and the checkout button
 class ShoppingCartItemsBuilder extends StatelessWidget {
-  const ShoppingCartItemsBuilder({
-    super.key,
-    required this.items,
-    required this.itemBuilder,
-    required this.ctaBuilder,
-  });
   final List<Item> items;
   final Widget Function(BuildContext, Item, int) itemBuilder;
   final WidgetBuilder ctaBuilder;
+
+  const ShoppingCartItemsBuilder({
+    required this.items,
+    required this.itemBuilder,
+    required this.ctaBuilder,
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +55,7 @@ class ShoppingCartItemsBuilder extends StatelessWidget {
             gapW16,
             Flexible(
               // use 1 flex unit for the checkout button
+              // ignore: avoid_redundant_argument_values
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: Sizes.p16),

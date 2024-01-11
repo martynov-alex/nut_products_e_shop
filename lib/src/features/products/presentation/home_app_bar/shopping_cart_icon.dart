@@ -12,7 +12,7 @@ class ShoppingCartIcon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     const cartItemsCount = 3;
     return Stack(
       children: [
@@ -36,8 +36,9 @@ class ShoppingCartIcon extends StatelessWidget {
 
 /// Icon badge showing the items count
 class ShoppingCartIconBadge extends StatelessWidget {
-  const ShoppingCartIconBadge({super.key, required this.itemsCount});
   final int itemsCount;
+
+  const ShoppingCartIconBadge({required this.itemsCount, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +56,7 @@ class ShoppingCartIconBadge extends StatelessWidget {
           // * Force text scale factor to 1.0 irrespective of the device's
           // * textScaleFactor. This is to prevent the text from growing bigger
           // * than the available space.
-          textScaler: const TextScaler.linear(1.0),
+          textScaler: TextScaler.noScaling,
           style: Theme.of(context)
               .textTheme
               .bodySmall!

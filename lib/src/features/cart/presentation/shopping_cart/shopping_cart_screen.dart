@@ -14,7 +14,7 @@ class ShoppingCartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     const cartItemsList = [
       Item(
         productId: '1',

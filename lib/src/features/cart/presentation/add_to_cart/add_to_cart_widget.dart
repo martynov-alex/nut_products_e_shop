@@ -11,28 +11,28 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 /// A widget that shows an [ItemQuantitySelector] along with a [PrimaryButton]
 /// to add the selected quantity of the item to the cart.
 class AddToCartWidget extends StatelessWidget {
-  const AddToCartWidget({super.key, required this.product});
   final Product product;
+
+  const AddToCartWidget({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     const availableQuantity = 5;
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Row(
-          mainAxisSize: MainAxisSize.max,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Text('Quantity:'.hardcoded),
             ItemQuantitySelector(
-              // TODO: plug in state
+              // TODO(martynov): plug in state
               quantity: 1,
               // let the user choose up to the available quantity or
               // 10 items at most
               maxQuantity: min(availableQuantity, 10),
-              // TODO: Implement onChanged
+              // TODO(martynov): Implement onChanged
               onChanged: (value) {
                 showNotImplementedAlertDialog(context: context);
               },
@@ -43,9 +43,10 @@ class AddToCartWidget extends StatelessWidget {
         const Divider(),
         gapH8,
         PrimaryButton(
-          // TODO: Loading state
+          // TODO(martynov): Loading state
+          // ignore: avoid_redundant_argument_values
           isLoading: false,
-          // TODO: Implement onPressed
+          // TODO(martynov): Implement onPressed
           onPressed: () {
             showNotImplementedAlertDialog(context: context);
           },

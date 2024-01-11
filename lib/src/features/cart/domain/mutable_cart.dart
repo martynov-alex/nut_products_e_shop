@@ -16,7 +16,7 @@ extension MutableCart on Cart {
 
   Cart addItems(List<Item> itemsToAdd) {
     final copy = Map<ProductID, int>.from(items);
-    for (var item in itemsToAdd) {
+    for (final item in itemsToAdd) {
       if (copy.containsKey(item.productId)) {
         copy[item.productId] = item.quantity + copy[item.productId]!;
       } else {
@@ -27,8 +27,7 @@ extension MutableCart on Cart {
   }
 
   Cart removeItemById(ProductID productId) {
-    final copy = Map<ProductID, int>.from(items);
-    copy.remove(productId);
+    final copy = Map<ProductID, int>.from(items)..remove(productId);
     return Cart(copy);
   }
 
@@ -42,7 +41,5 @@ extension MutableCart on Cart {
     }
   }
 
-  Cart clear() {
-    return const Cart();
-  }
+  Cart clear() => const Cart();
 }

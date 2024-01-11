@@ -30,22 +30,20 @@ class _ProductsSearchTextFieldState extends State<ProductsSearchTextField> {
       builder: (context, value, _) {
         return TextField(
           controller: _controller,
-          autofocus: false,
           style: Theme.of(context).textTheme.titleLarge,
           decoration: InputDecoration(
             hintText: 'Search products'.hardcoded,
             icon: const Icon(Icons.search),
             suffixIcon: value.text.isNotEmpty
                 ? IconButton(
-                    onPressed: () {
-                      _controller.clear();
-                      // TODO: Clear search state
-                    },
+                    // TODO(martynov): Clear search state
+                    onPressed: _controller.clear,
                     icon: const Icon(Icons.clear),
                   )
                 : null,
           ),
-          // TODO: Implement onChanged
+          // TODO(martynov): Implement onChanged
+          // ignore: avoid_redundant_argument_values
           onChanged: null,
         );
       },

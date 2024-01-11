@@ -7,11 +7,13 @@ import 'package:nut_products_e_shop/src/features/reviews/presentation/product_re
 
 /// Shows the list of reviews for a given product ID
 class ProductReviewsList extends StatelessWidget {
-  const ProductReviewsList({super.key, required this.productId});
   final String productId;
+
+  const ProductReviewsList({required this.productId, super.key});
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Read from data source
+    // TODO(martynov): Read from data source
     final reviews = <Review>[
       Review(
         date: DateTime(2022, 2, 12),
@@ -26,7 +28,7 @@ class ProductReviewsList extends StatelessWidget {
     ];
     return SliverList(
       delegate: SliverChildBuilderDelegate(
-        (BuildContext context, int index) => ResponsiveCenter(
+        (context, index) => ResponsiveCenter(
           maxContentWidth: Breakpoint.tablet,
           padding: const EdgeInsets.symmetric(
               horizontal: Sizes.p16, vertical: Sizes.p8),

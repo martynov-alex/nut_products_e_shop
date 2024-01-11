@@ -4,8 +4,9 @@ import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 
 /// Shows the product average rating score and the number of ratings
 class ProductAverageRating extends StatelessWidget {
-  const ProductAverageRating({super.key, required this.product});
   final Product product;
+
+  const ProductAverageRating({required this.product, super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,8 +11,8 @@ class PaymentPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // TODO: Listen to cart changes on checkout and update the UI.
-    // TODO: Read from data source
+    // TODO(martynov): Listen to cart changes on checkout and update the UI.
+    // TODO(martynov): Read from data source
     const cartItemsList = [
       Item(
         productId: '1',

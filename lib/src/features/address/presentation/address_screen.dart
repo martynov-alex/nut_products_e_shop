@@ -47,7 +47,7 @@ class _AddressPageState extends State<AddressScreen> {
   Future<void> _submit() async {
     if (_formKey.currentState!.validate()) {
       FocusScope.of(context).unfocus();
-      // TODO: uncomment and submit the address
+      // TODO(martynov): uncomment and submit the address
       // final address = Address(
       //   address: _addressController.value.text,
       //   city: _cityController.value.text,
@@ -55,7 +55,7 @@ class _AddressPageState extends State<AddressScreen> {
       //   postalCode: _postalCodeController.value.text,
       //   country: _countryController.value.text,
       // );
-      // TODO: Only fire callback if submission is successful
+      // TODO(martynov): Only fire callback if submission is successful
       widget.onSubmit?.call();
     }
   }
@@ -123,15 +123,6 @@ class _AddressPageState extends State<AddressScreen> {
 
 // Reusable address form field
 class AddressFormField extends StatelessWidget {
-  const AddressFormField({
-    super.key,
-    required this.controller,
-    required this.labelText,
-    this.keyboardType,
-    this.enabled = true,
-    this.formFieldKey,
-  });
-
   /// Controller used to read out the value in the parent widget
   final TextEditingController controller;
   final String labelText;
@@ -143,6 +134,15 @@ class AddressFormField extends StatelessWidget {
   /// Key used in the widget tests
   final Key? formFieldKey;
 
+  const AddressFormField({
+    required this.controller,
+    required this.labelText,
+    this.keyboardType,
+    this.enabled = true,
+    this.formFieldKey,
+    super.key,
+  });
+
   @override
   Widget build(BuildContext context) {
     return TextFormField(
@@ -152,12 +152,11 @@ class AddressFormField extends StatelessWidget {
         labelText: labelText,
         enabled: enabled,
       ),
-      autocorrect: true,
       textInputAction: TextInputAction.next,
       keyboardType: keyboardType,
       keyboardAppearance: Brightness.light,
       validator: (value) =>
-          value?.isNotEmpty == true ? null : 'Can\'t be empty'.hardcoded,
+          value?.isNotEmpty ?? false ? null : "Can't be empty".hardcoded,
     );
   }
 }
