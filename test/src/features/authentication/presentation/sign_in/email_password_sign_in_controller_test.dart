@@ -1,5 +1,5 @@
 // ignore_for_file: avoid_redundant_argument_values, cascade_invocations
-
+@Timeout(Duration(milliseconds: 500))
 import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -51,7 +51,7 @@ void main() {
 
       // verify
       expect(result, true);
-    }, timeout: const Timeout(Duration(milliseconds: 500)));
+    });
 
     test('''
     Given formType is signIn
@@ -93,7 +93,7 @@ void main() {
 
       // verify
       expect(result, false);
-    }, timeout: const Timeout(Duration(milliseconds: 500)));
+    });
 
     test('''
     Given formType is register
@@ -132,7 +132,7 @@ void main() {
 
       // verify
       expect(result, true);
-    }, timeout: const Timeout(Duration(milliseconds: 500)));
+    });
 
     test('''
     Given formType is register
@@ -174,7 +174,7 @@ void main() {
 
       // verify
       expect(result, false);
-    }, timeout: const Timeout(Duration(milliseconds: 500)));
+    });
   });
 
   group('EmailPasswordSignInController - updateFormType', () {
