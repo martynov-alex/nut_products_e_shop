@@ -1,9 +1,14 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
+import 'package:nut_products_e_shop/src/utils/delay.dart';
 import 'package:nut_products_e_shop/src/utils/in_memory_state.dart';
 
 class FakeAuthRepository {
+  final bool addDelay;
   final _authState = InMemoryStore<AppUser?>(null);
+
+  FakeAuthRepository({this.addDelay = true});
 
   // `null` means the user is not authenticated
   Stream<AppUser?> authStateChanges() => _authState.stream;
@@ -13,20 +18,20 @@ class FakeAuthRepository {
     String email,
     String password,
   ) async {
-    await Future<void>.delayed(const Duration(seconds: 2));
-    if (currentUser == null) _createNewUser(email);
+    await delay(addDelay: addDelay);
+    _createNewUser(email);
   }
 
   Future<void> createUserWithEmailAndPassword(
     String email,
     String password,
   ) async {
-    await Future<void>.delayed(const Duration(seconds: 2));
-    if (currentUser == null) _createNewUser(email);
+    await delay(addDelay: addDelay);
+    _createNewUser(email);
   }
 
   Future<void> signOut() async {
-    await Future<void>.delayed(const Duration(seconds: 2));
+    await delay(addDelay: addDelay);
     _authState.value = null;
   }
 
