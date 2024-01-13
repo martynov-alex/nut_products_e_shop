@@ -3,10 +3,9 @@ import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/account/account_screen_controller.dart';
 
-class MockAuthRepository extends Mock implements FakeAuthRepository {}
+import '../../../../mocks.dart';
 
 void main() {
   late MockAuthRepository authRepository;
