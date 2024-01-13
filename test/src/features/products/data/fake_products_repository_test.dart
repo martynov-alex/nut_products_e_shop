@@ -6,7 +6,7 @@ void main() {
   FakeProductsRepository makeFakeProductsRepository() =>
       FakeProductsRepository(addDelay: false);
 
-  group('FakeProductsRepository sync methods', () {
+  group('FakeProductsRepository', () {
     test('getProductsList returns global list', () {
       final productsRepository = makeFakeProductsRepository();
       expect(
@@ -31,9 +31,7 @@ void main() {
         null,
       );
     });
-  });
 
-  group('FakeProductsRepository async methods', () {
     test('fetchProductsList returns global list', () async {
       final productsRepository = makeFakeProductsRepository();
       expect(
