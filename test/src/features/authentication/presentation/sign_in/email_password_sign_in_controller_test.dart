@@ -11,8 +11,6 @@ import 'package:nut_products_e_shop/src/features/authentication/presentation/sig
 import '../../../../mocks.dart';
 
 void main() {
-  const testEmail = 'test@test.ru';
-  const testPassword = 'testPassword';
   group('EmailPasswordSignInController - submit', () {
     test('''
     Given formType is signIn

@@ -1,15 +1,9 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
-import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
+
+import '../../../mocks.dart';
 
 void main() {
-  const testEmail = 'test@test.ru';
-  const testPassword = 'testPassword';
-  final testUser = AppUser(
-    uid: testEmail.split('').reversed.join(),
-    email: testEmail,
-  );
-
   FakeAuthRepository makeFakeAuthRepository() =>
       FakeAuthRepository(addDelay: false);
   group('FakeAuthRepository', () {

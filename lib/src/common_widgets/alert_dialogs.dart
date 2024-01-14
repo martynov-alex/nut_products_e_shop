@@ -5,6 +5,8 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
+const kAlertDialogDefaultButtonKey = Key('kAlertDialogDefaultButtonKey');
+
 /// Generic function to show a platform-aware Material or Cupertino dialog
 Future<bool?> showAlertDialog({
   required BuildContext context,
@@ -30,6 +32,7 @@ Future<bool?> showAlertDialog({
                   onPressed: () => Navigator.of(context).pop(false),
                 ),
               TextButton(
+                key: kAlertDialogDefaultButtonKey,
                 child: Text(defaultActionText),
                 onPressed: () => Navigator.of(context).pop(true),
               ),
@@ -41,6 +44,7 @@ Future<bool?> showAlertDialog({
                   onPressed: () => Navigator.of(context).pop(false),
                 ),
               CupertinoDialogAction(
+                key: kAlertDialogDefaultButtonKey,
                 child: Text(defaultActionText),
                 onPressed: () => Navigator.of(context).pop(true),
               ),
