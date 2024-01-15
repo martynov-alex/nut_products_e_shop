@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-const _kGoldenDiffTolerance = 0.05;
+const _kGoldenDiffTolerance = 0.01;
 
 class GoldenDiffComparator extends LocalFileComparator {
   final double tolerance;
@@ -17,6 +17,8 @@ class GoldenDiffComparator extends LocalFileComparator {
 
   @override
   Future<bool> compare(Uint8List imageBytes, Uri golden) async {
+    print(basedir);
+
     final ComparisonResult result = await GoldenFileComparator.compareLists(
       imageBytes,
       await getGoldenBytes(golden),
