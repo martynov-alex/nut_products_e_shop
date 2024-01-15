@@ -27,7 +27,7 @@ class GoldenDiffComparator extends LocalFileComparator {
 
     // ignore: avoid_print
     print('''
-      'A tolerable difference of ${result.diffPercent * 100}% was found when comparing $golden.
+      A tolerable difference of ${result.diffPercent * 100}% was found when comparing $golden.
       The current golden test maximum tolerance setting is ${tolerance * 100}%.
       ''');
     return result.passed || result.diffPercent <= tolerance;
