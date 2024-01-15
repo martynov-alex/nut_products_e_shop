@@ -8,12 +8,16 @@ import 'package:nut_products_e_shop/src/features/products/presentation/home_app_
 import 'package:nut_products_e_shop/src/features/products/presentation/products_list/product_card.dart';
 
 import 'features/authentication/auth_robot.dart';
+import 'goldens/golden_robot.dart';
 
 class Robot {
   final WidgetTester tester;
   final AuthRobot auth;
+  final GoldenRobot golden;
 
-  Robot(this.tester) : auth = AuthRobot(tester);
+  Robot(this.tester)
+      : auth = AuthRobot(tester),
+        golden = GoldenRobot(tester);
 
   Future<void> pumpMyApp() async {
     final productsRepository = FakeProductsRepository(addDelay: false);
