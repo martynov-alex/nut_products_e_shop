@@ -15,9 +15,9 @@ import 'package:nut_products_e_shop/src/utils/async_value_ui.dart';
 /// Wraps the [EmailPasswordSignInContents] widget below with a [Scaffold] and
 /// [AppBar] with a title.
 class EmailPasswordSignInScreen extends StatelessWidget {
-  final EmailPasswordSignInFormType formType;
-
   const EmailPasswordSignInScreen({required this.formType, super.key});
+
+  final EmailPasswordSignInFormType formType;
 
   // * Keys for testing using find.byKey()
   static const emailKey = Key('email');
@@ -38,16 +38,17 @@ class EmailPasswordSignInScreen extends StatelessWidget {
 /// - sign in
 /// - register (create an account)
 class EmailPasswordSignInContents extends ConsumerStatefulWidget {
-  /// The default form type to use.
-  final EmailPasswordSignInFormType formType;
-
-  final VoidCallback? onSignedIn;
-
   const EmailPasswordSignInContents({
     required this.formType,
     this.onSignedIn,
     super.key,
   });
+
+  /// The default form type to use.
+  final EmailPasswordSignInFormType formType;
+
+  final VoidCallback? onSignedIn;
+
   @override
   ConsumerState<EmailPasswordSignInContents> createState() =>
       _EmailPasswordSignInContentsState();

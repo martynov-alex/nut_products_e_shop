@@ -7,9 +7,9 @@ import 'package:nut_products_e_shop/src/features/reviews/presentation/product_re
 
 /// Shows the list of reviews for a given product ID
 class ProductReviewsList extends StatelessWidget {
-  final String productId;
-
   const ProductReviewsList({required this.productId, super.key});
+
+  final String productId;
 
   @override
   Widget build(BuildContext context) {

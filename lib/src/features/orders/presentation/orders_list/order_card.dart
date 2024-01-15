@@ -10,9 +10,9 @@ import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Shows all the details for a given order
 class OrderCard extends StatelessWidget {
-  final Order order;
-
   const OrderCard({required this.order, super.key});
+
+  final Order order;
 
   @override
   Widget build(BuildContext context) {
@@ -37,9 +37,9 @@ class OrderCard extends StatelessWidget {
 /// - Total order amount
 /// - Order date
 class OrderHeader extends StatelessWidget {
-  final Order order;
-
   const OrderHeader({required this.order, super.key});
+
+  final Order order;
 
   @override
   Widget build(BuildContext context) {
@@ -88,9 +88,9 @@ class OrderHeader extends StatelessWidget {
 
 /// List of items in the order
 class OrderItemsList extends StatelessWidget {
-  final Order order;
-
   const OrderItemsList({required this.order, super.key});
+
+  final Order order;
 
   @override
   Widget build(BuildContext context) {

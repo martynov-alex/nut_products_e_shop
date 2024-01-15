@@ -18,6 +18,13 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Shows a shopping cart item (or loading/error UI if needed)
 class ShoppingCartItem extends ConsumerWidget {
+  const ShoppingCartItem({
+    required this.item,
+    required this.itemIndex,
+    this.isEditable = true,
+    super.key,
+  });
+
   final Item item;
   final int itemIndex;
 
@@ -25,13 +32,6 @@ class ShoppingCartItem extends ConsumerWidget {
   /// if false, the quantity will be shown as a read-only label (used in the
   /// [PaymentPage])
   final bool isEditable;
-
-  const ShoppingCartItem({
-    required this.item,
-    required this.itemIndex,
-    this.isEditable = true,
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -63,11 +63,6 @@ class ShoppingCartItem extends ConsumerWidget {
 
 /// Shows a shopping cart item for a given product
 class ShoppingCartItemContents extends StatelessWidget {
-  final Product product;
-  final Item item;
-  final int itemIndex;
-  final bool isEditable;
-
   const ShoppingCartItemContents({
     required this.product,
     required this.item,
@@ -75,6 +70,11 @@ class ShoppingCartItemContents extends StatelessWidget {
     required this.isEditable,
     super.key,
   });
+
+  final Product product;
+  final Item item;
+  final int itemIndex;
+  final bool isEditable;
 
   // * Keys for testing using find.byKey()
   static Key deleteKey(int index) => Key('delete-$index');

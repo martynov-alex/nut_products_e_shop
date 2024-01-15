@@ -6,9 +6,9 @@ import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 /// Scrollable widget that shows a responsive card with a given child widget.
 /// Useful for displaying forms and other widgets that need to be scrollable.
 class ResponsiveScrollableCard extends StatelessWidget {
-  final Widget child;
-
   const ResponsiveScrollableCard({required this.child, super.key});
+
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

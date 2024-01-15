@@ -8,14 +8,14 @@ import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 
 /// Used to show a single product inside a card.
 class ProductCard extends StatelessWidget {
-  final Product product;
-  final VoidCallback? onPressed;
-
   const ProductCard({
     required this.product,
     this.onPressed,
     super.key,
   });
+
+  final Product product;
+  final VoidCallback? onPressed;
 
   // * Keys for testing using find.byKey()
   static const productCardKey = Key('product-card');

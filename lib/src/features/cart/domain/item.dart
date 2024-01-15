@@ -6,6 +6,7 @@ class Item {
     required this.productId,
     required this.quantity,
   });
+
   final ProductID productId;
   final int quantity;
 }

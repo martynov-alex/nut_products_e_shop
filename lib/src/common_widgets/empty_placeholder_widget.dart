@@ -7,9 +7,9 @@ import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// Placeholder widget showing a message and CTA to go back to the home screen.
 class EmptyPlaceholderWidget extends StatelessWidget {
-  final String message;
-
   const EmptyPlaceholderWidget({required this.message, super.key});
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {

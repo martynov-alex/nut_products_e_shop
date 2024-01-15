@@ -36,9 +36,9 @@ class ShoppingCartIcon extends StatelessWidget {
 
 /// Icon badge showing the items count
 class ShoppingCartIconBadge extends StatelessWidget {
-  final int itemsCount;
-
   const ShoppingCartIconBadge({required this.itemsCount, super.key});
+
+  final int itemsCount;
 
   @override
   Widget build(BuildContext context) {

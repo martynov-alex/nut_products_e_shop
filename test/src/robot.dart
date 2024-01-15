@@ -11,13 +11,13 @@ import 'features/authentication/auth_robot.dart';
 import 'goldens/golden_robot.dart';
 
 class Robot {
-  final WidgetTester tester;
-  final AuthRobot auth;
-  final GoldenRobot golden;
-
   Robot(this.tester)
       : auth = AuthRobot(tester),
         golden = GoldenRobot(tester);
+
+  final WidgetTester tester;
+  final AuthRobot auth;
+  final GoldenRobot golden;
 
   Future<void> pumpMyApp() async {
     final productsRepository = FakeProductsRepository(addDelay: false);

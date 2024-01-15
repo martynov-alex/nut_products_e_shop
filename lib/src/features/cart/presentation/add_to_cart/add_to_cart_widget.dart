@@ -11,9 +11,9 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 /// A widget that shows an [ItemQuantitySelector] along with a [PrimaryButton]
 /// to add the selected quantity of the item to the cart.
 class AddToCartWidget extends StatelessWidget {
-  final Product product;
-
   const AddToCartWidget({required this.product, super.key});
+
+  final Product product;
 
   @override
   Widget build(BuildContext context) {

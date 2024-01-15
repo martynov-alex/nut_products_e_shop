@@ -3,11 +3,6 @@ import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 
 /// Item quantity selector with +/- buttons and a text value in the middle.
 class ItemQuantitySelector extends StatelessWidget {
-  final int quantity;
-  final int maxQuantity;
-  final int? itemIndex;
-  final ValueChanged<int>? onChanged;
-
   const ItemQuantitySelector({
     required this.quantity,
     this.maxQuantity = 10,
@@ -15,6 +10,11 @@ class ItemQuantitySelector extends StatelessWidget {
     this.onChanged,
     super.key,
   });
+
+  final int quantity;
+  final int maxQuantity;
+  final int? itemIndex;
+  final ValueChanged<int>? onChanged;
 
   // * Keys for testing using find.byKey()
   static Key decrementKey([int? index]) =>
