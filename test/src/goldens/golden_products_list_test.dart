@@ -24,7 +24,7 @@ void main() {
       await expectLater(
         find.byType(MyApp),
         matchesGoldenFile(
-            'products_list_${currentSize.width.toInt()}x${currentSize.height.toInt()}.png'),
+            'images/products_list_${currentSize.width.toInt()}x${currentSize.height.toInt()}.png'),
       );
     },
     variant: sizeVariant,
