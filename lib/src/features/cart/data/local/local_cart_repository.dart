@@ -11,6 +11,7 @@ abstract class LocalCartRepository {
 }
 
 final localCartRepositoryProvider = Provider<LocalCartRepository>((ref) {
-  // TODO(martynov): Override this in the main method
+  // The provider is overridden in main.dart which helps to get the
+  // repository synchronously
   throw UnimplementedError();
 });
