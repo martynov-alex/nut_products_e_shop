@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'dart:ui';
 
 import 'package:flutter_test/flutter_test.dart';
@@ -31,6 +32,6 @@ void main() {
     tags: ['golden', 'products_list'],
     // Skip this test until we can run it successfully on CI without this error:
     // Golden "products_list_300x600.png": Pixel test failed, 2.52% diff detected.
-    skip: true,
+    skip: Platform.isLinux,
   );
 }
