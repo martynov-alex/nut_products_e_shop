@@ -17,8 +17,6 @@ class GoldenDiffComparator extends LocalFileComparator {
 
   @override
   Future<bool> compare(Uint8List imageBytes, Uri golden) async {
-    print(basedir);
-
     final ComparisonResult result = await GoldenFileComparator.compareLists(
       imageBytes,
       await getGoldenBytes(golden),
