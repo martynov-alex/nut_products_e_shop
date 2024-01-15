@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
@@ -6,13 +7,13 @@ import 'package:nut_products_e_shop/src/features/reviews/presentation/product_re
 import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Simple card widget to show a product review info (score, comment, date)
-class ProductReviewCard extends StatelessWidget {
+class ProductReviewCard extends ConsumerWidget {
   const ProductReviewCard(this.review, {super.key});
   final Review review;
   @override
-  Widget build(BuildContext context) {
-    // TODO(martynov): Inject date formatter
-    final dateFormatted = kDateFormatter.format(review.date);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final dateFormatted = ref.watch(dateFormatterProvider).format(review.date);
+
     return Card(
       child: Padding(
         padding: const EdgeInsets.all(Sizes.p16),

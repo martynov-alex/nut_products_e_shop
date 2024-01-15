@@ -5,7 +5,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
-const kAlertDialogDefaultButtonKey = Key('kAlertDialogDefaultButtonKey');
+const kAlertDialogDefaultButtonKey = Key('alert-dialog-default-button-key');
 
 /// Generic function to show a platform-aware Material or Cupertino dialog
 Future<bool?> showAlertDialog({

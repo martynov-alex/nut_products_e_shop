@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
@@ -10,7 +11,7 @@ import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Simple widget to show the product purchase date along with a button to
 /// leave a review.
-class LeaveReviewAction extends StatelessWidget {
+class LeaveReviewAction extends ConsumerWidget {
   const LeaveReviewAction({
     required this.productId,
     super.key,
@@ -18,12 +19,13 @@ class LeaveReviewAction extends StatelessWidget {
   final String productId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // TODO(martynov): Read from data source
     final purchase = Purchase(orderId: 'abc', orderDate: DateTime.now());
     if (purchase != null) {
-      // TODO(martynov): Inject date formatter
-      final dateFormatted = kDateFormatter.format(purchase.orderDate);
+      final dateFormatted =
+          ref.watch(dateFormatterProvider).format(purchase.orderDate);
+
       return Column(
         children: [
           const Divider(),
