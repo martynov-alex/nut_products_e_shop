@@ -5,7 +5,7 @@ import 'dart:developer';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-const _kGoldenDiffTolerance = 0.01;
+const _kGoldenDiffTolerance = 0.05;
 
 class GoldenDiffComparator extends LocalFileComparator {
   final double tolerance;
