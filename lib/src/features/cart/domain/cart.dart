@@ -27,6 +27,16 @@ class Cart {
 
   @override
   String toString() => 'Cart(items: $items)';
+
+  @override
+  bool operator ==(covariant Cart other) {
+    if (identical(this, other)) return true;
+
+    return mapEquals(other.items, items);
+  }
+
+  @override
+  int get hashCode => items.hashCode;
 }
 
 extension CartItems on Cart {
