@@ -2,7 +2,7 @@
 import 'package:flutter/foundation.dart';
 
 /// * The product identifier is an important concept and can have its own type.
-typedef ProductID = String;
+typedef ProductId = String;
 
 /// Class representing a product.
 @immutable
@@ -19,7 +19,7 @@ class Product {
   });
 
   /// Unique product id
-  final ProductID id;
+  final ProductId id;
   final String imageUrl;
   final String title;
   final String description;

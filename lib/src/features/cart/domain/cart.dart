@@ -13,12 +13,12 @@ class Cart {
   /// All the items in the shopping cart, where:
   /// - key: product ID
   /// - value: quantity
-  final Map<ProductID, int> items;
+  final Map<ProductId, int> items;
 
   Map<String, dynamic> toMap() => {'items': items};
 
   factory Cart.fromMap(Map<String, dynamic> map) =>
-      Cart(Map<ProductID, int>.from(map['items']));
+      Cart(Map<ProductId, int>.from(map['items']));
 
   String toJson() => json.encode(toMap());
 

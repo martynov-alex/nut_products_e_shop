@@ -41,9 +41,9 @@ class CartService {
   }
 
   /// If an item with the given productId is found, remove it.
-  Future<void> removeItemById(ProductID productID) async {
+  Future<void> removeItemById(ProductId productId) async {
     final cart = await _fetchCart();
-    final updated = cart.removeItemById(productID);
+    final updated = cart.removeItemById(productId);
     await _setCart(updated);
   }
 

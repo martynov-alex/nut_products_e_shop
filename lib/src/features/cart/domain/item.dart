@@ -10,7 +10,7 @@ class Item {
     required this.quantity,
   });
 
-  final ProductID productId;
+  final ProductId productId;
   final int quantity;
 
   @override

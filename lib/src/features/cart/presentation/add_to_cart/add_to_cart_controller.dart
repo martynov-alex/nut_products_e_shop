@@ -12,8 +12,8 @@ class AddToCartController extends StateNotifier<AsyncValue<int>> {
     state = AsyncData(quantity);
   }
 
-  Future<void> addItem(ProductID productID) async {
-    final item = Item(productId: productID, quantity: state.value!);
+  Future<void> addItem(ProductId productId) async {
+    final item = Item(productId: productId, quantity: state.value!);
     state = const AsyncLoading<int>().copyWithPrevious(state);
     final value = await AsyncValue.guard<void>(() => cartService.addItem(item));
     if (value.hasError) {
@@ -27,7 +27,8 @@ class AddToCartController extends StateNotifier<AsyncValue<int>> {
 
 final addToCartControllerProvider =
     StateNotifierProvider.autoDispose<AddToCartController, AsyncValue<int>>(
-        (ref) {
-  final cartService = ref.watch(cartServiceProvider);
-  return AddToCartController(cartService: cartService);
-});
+  (ref) {
+    final cartService = ref.watch(cartServiceProvider);
+    return AddToCartController(cartService: cartService);
+  },
+);

@@ -8,14 +8,14 @@ import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 extension MutableCart on Cart {
   /// Add an item to the cart by *overriding* the quantity if it already exists.
   Cart setItem(Item item) {
-    final copy = Map<ProductID, int>.from(items);
+    final copy = Map<ProductId, int>.from(items);
     copy[item.productId] = item.quantity;
     return Cart(copy);
   }
 
   /// Add an item to the cart by *updating* the quantity if it already exists.
   Cart addItem(Item item) {
-    final copy = Map<ProductID, int>.from(items);
+    final copy = Map<ProductId, int>.from(items);
     // * Update item quantity. Read this for more details:
     // * https://codewithandrea.com/tips/dart-map-update-method/
     copy.update(
@@ -31,7 +31,7 @@ extension MutableCart on Cart {
   /// Add a list of items to the cart by *updating* the quantities of items that
   /// already exist.
   Cart addItems(List<Item> itemsToAdd) {
-    final copy = Map<ProductID, int>.from(items);
+    final copy = Map<ProductId, int>.from(items);
     for (final item in itemsToAdd) {
       copy.update(
         item.productId,
@@ -45,8 +45,8 @@ extension MutableCart on Cart {
   }
 
   /// If an item with the given productId is found, remove it.
-  Cart removeItemById(ProductID productId) {
-    final copy = Map<ProductID, int>.from(items);
+  Cart removeItemById(ProductId productId) {
+    final copy = Map<ProductId, int>.from(items);
     copy.remove(productId);
     return Cart(copy);
   }

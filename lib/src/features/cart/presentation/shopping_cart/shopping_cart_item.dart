@@ -35,6 +35,7 @@ class ShoppingCartItem extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final productValue = ref.watch(productProvider(item.productId));
+
     return AsyncValueWidget<Product?>(
       value: productValue,
       data: (product) => Padding(
