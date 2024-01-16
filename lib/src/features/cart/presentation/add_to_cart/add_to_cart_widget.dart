@@ -6,6 +6,7 @@ import 'package:nut_products_e_shop/src/common_widgets/item_quantity_selector.da
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/cart/presentation/add_to_cart/add_to_cart_controller.dart';
+import 'package:nut_products_e_shop/src/features/cart/service/cart_service.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/utils/async_value_ui.dart';
@@ -24,7 +25,7 @@ class AddToCartWidget extends ConsumerWidget {
       (_, state) => state.showAlertDialogOnError(context),
     );
 
-    final availableQuantity = product.availableQuantity;
+    final availableQuantity = ref.watch(itemAvailableQuantityProvider(product));
     final state = ref.watch(addToCartControllerProvider);
 
     return Column(

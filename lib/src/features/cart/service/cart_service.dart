@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:nut_products_e_shop/src/features/cart/data/local/local_cart_repository.dart';
@@ -99,4 +101,15 @@ final cartTotalProvider = Provider.autoDispose<double>((ref) {
       return previousValue + (product.price * item.value);
     },
   );
+});
+
+final itemAvailableQuantityProvider =
+    Provider.autoDispose.family<int, Product>((ref, product) {
+  final cart = ref.watch(cartProvider).value;
+
+  if (cart == null) return product.availableQuantity;
+  // get the current quantity for the given product in the cart
+  final quantity = cart.items[product.id] ?? 0;
+  // subtract it from the product available quantity
+  return max(0, product.availableQuantity - quantity);
 });
