@@ -7,6 +7,7 @@ import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/app.dart';
 import 'package:nut_products_e_shop/src/features/cart/data/local/local_cart_repository.dart';
 import 'package:nut_products_e_shop/src/features/cart/data/local/sembast_cart_repository.dart';
+import 'package:nut_products_e_shop/src/features/cart/service/cart_sync_service.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 void main() async {
@@ -26,8 +27,8 @@ void main() async {
   // * Initialize the local cart repository
   final localCartRepository = await SembastCartRepository.makeDefault();
 
-  // * Entry point of the app
-  runApp(ProviderScope(
+  // * Create ProviderContainer with any required overrides
+  final container = ProviderContainer(
     overrides: [
       // after overrides we can get the repository synchronously
       localCartRepositoryProvider.overrideWith((ref) {
@@ -37,8 +38,17 @@ void main() async {
         return localCartRepository;
       }),
     ],
-    child: const MyApp(),
-  ));
+  )
+    // * Initialize CartSyncService to start the listener
+    ..read(cartSyncServiceProvider);
+
+  // * Entry point of the app
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const MyApp(),
+    ),
+  );
 }
 
 void registerErrorHandlers() {
