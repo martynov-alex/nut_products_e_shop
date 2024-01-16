@@ -2,13 +2,13 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/common_widgets/async_value_widget.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_image.dart';
 import 'package:nut_products_e_shop/src/common_widgets/item_quantity_selector.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
+import 'package:nut_products_e_shop/src/features/cart/presentation/shopping_cart/shopping_cart_screen_controller.dart';
 import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/payment_page.dart';
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
@@ -130,6 +130,8 @@ class EditOrRemoveItemWidget extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final state = ref.watch(shoppingCartScreenControllerProvider);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
@@ -137,18 +139,20 @@ class EditOrRemoveItemWidget extends ConsumerWidget {
           quantity: item.quantity,
           maxQuantity: min(product.availableQuantity, 10),
           itemIndex: itemIndex,
-          // TODO(martynov): Implement onChanged
-          onChanged: (value) {
-            showNotImplementedAlertDialog(context: context);
-          },
+          onChanged: state.isLoading
+              ? null
+              : (quantity) => ref
+                  .read(shoppingCartScreenControllerProvider.notifier)
+                  .updateItemQuantity(item.productId, quantity),
         ),
         IconButton(
           key: deleteKey(itemIndex),
           icon: Icon(Icons.delete, color: Colors.red[700]),
-          // TODO(martynov): Implement onPressed
-          onPressed: () {
-            showNotImplementedAlertDialog(context: context);
-          },
+          onPressed: state.isLoading
+              ? null
+              : () => ref
+                  .read(shoppingCartScreenControllerProvider.notifier)
+                  .removeItemById(item.productId),
         ),
         const Spacer(),
       ],
