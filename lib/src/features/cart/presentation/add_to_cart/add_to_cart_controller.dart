@@ -17,14 +17,15 @@ class AddToCartController extends StateNotifier<AsyncValue<int>> {
     state = const AsyncLoading<int>().copyWithPrevious(state);
     final value = await AsyncValue.guard<void>(() => cartService.addItem(item));
     if (value.hasError) {
-      state = AsyncError(value.error!, value.stackTrace!);
+      state = AsyncError<int>(value.error!, value.stackTrace!)
+          .copyWithPrevious(state);
     } else {
       state = const AsyncData(1);
     }
   }
 }
 
-final addToCartController =
+final addToCartControllerProvider =
     StateNotifierProvider<AddToCartController, AsyncValue<int>>((ref) {
   final cartService = ref.watch(cartServiceProvider);
   return AddToCartController(cartService: cartService);
