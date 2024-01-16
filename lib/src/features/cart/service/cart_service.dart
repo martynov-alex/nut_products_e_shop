@@ -73,3 +73,10 @@ final cartProvider = StreamProvider<Cart>((ref) {
   if (user == null) return ref.watch(localCartRepositoryProvider).watchCart();
   return ref.watch(remoteCartRepositoryProvider).watchCart(user.uid);
 });
+
+final cartItemsCountProvider = Provider<int>(
+  (ref) => ref.watch(cartProvider).maybeMap(
+        data: (cart) => cart.value.items.length,
+        orElse: () => 0,
+      ),
+);

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/features/cart/service/cart_service.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// Shopping cart icon with items count badge
@@ -13,8 +14,7 @@ class ShoppingCartIcon extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    // TODO(martynov): Read from data source
-    const cartItemsCount = 3;
+    final cartItemsCount = ref.watch(cartItemsCountProvider);
 
     return Stack(
       children: [
@@ -26,7 +26,7 @@ class ShoppingCartIcon extends ConsumerWidget {
           ),
         ),
         if (cartItemsCount > 0)
-          const Positioned(
+          Positioned(
             top: Sizes.p4,
             right: Sizes.p4,
             child: ShoppingCartIconBadge(itemsCount: cartItemsCount),
