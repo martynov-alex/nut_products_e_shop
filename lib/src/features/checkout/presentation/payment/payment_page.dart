@@ -21,7 +21,7 @@ class PaymentPage extends ConsumerWidget {
       // because all the items have been removed from the cart.
       // So we should go to the orders page.
       if (cartTotal == 0.0) {
-        context.goNamed(AppRoutes.orders.name);
+        context.goNamed(AppRoute.orders.name);
       }
     });
 

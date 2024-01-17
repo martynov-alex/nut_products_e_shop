@@ -36,7 +36,7 @@ class ProductsGrid extends ConsumerWidget {
                 return ProductCard(
                   product: product,
                   onPressed: () => context.goNamed(
-                    AppRoutes.product.name,
+                    AppRoute.product.name,
                     pathParameters: {'id': product.id},
                   ),
                 );

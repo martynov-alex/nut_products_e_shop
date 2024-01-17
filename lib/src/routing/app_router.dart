@@ -14,7 +14,7 @@ import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_revi
 import 'package:nut_products_e_shop/src/routing/go_router_refresh_stream.dart';
 import 'package:nut_products_e_shop/src/routing/not_found_screen.dart';
 
-enum AppRoutes {
+enum AppRoute {
   home('/'),
   product('product/:id'),
   leaveReview('review'),
@@ -24,7 +24,7 @@ enum AppRoutes {
   account('account'),
   signIn('signIn');
 
-  const AppRoutes(this.path);
+  const AppRoute(this.path);
 
   final String path;
 }
@@ -33,19 +33,19 @@ final goRouterProvider = Provider<GoRouter>((ref) {
   final authRepository = ref.watch(authRepositoryProvider);
 
   return GoRouter(
-    initialLocation: AppRoutes.home.path,
+    initialLocation: AppRoute.home.path,
     redirect: (_, state) {
       final isLoggedIn = authRepository.currentUser != null;
       final path = state.uri.path;
 
       if (isLoggedIn) {
-        if (path == '/${AppRoutes.signIn.path}') {
-          return AppRoutes.home.path;
+        if (path == '/${AppRoute.signIn.path}') {
+          return AppRoute.home.path;
         }
       } else {
-        if (path == '/${AppRoutes.account.path}' ||
-            path == '/${AppRoutes.orders.path}') {
-          return AppRoutes.home.path;
+        if (path == '/${AppRoute.account.path}' ||
+            path == '/${AppRoute.orders.path}') {
+          return AppRoute.home.path;
         }
       }
       return null;
@@ -53,13 +53,13 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     refreshListenable: GoRouterRefreshStream(authRepository.authStateChanges()),
     routes: [
       GoRoute(
-        path: AppRoutes.home.path,
-        name: AppRoutes.home.name,
+        path: AppRoute.home.path,
+        name: AppRoute.home.name,
         builder: (context, state) => const ProductsListScreen(),
         routes: [
           GoRoute(
-            path: AppRoutes.product.path,
-            name: AppRoutes.product.name,
+            path: AppRoute.product.path,
+            name: AppRoute.product.name,
             builder: (context, state) {
               final productId = state.pathParameters['id']!;
 
@@ -67,8 +67,8 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             },
             routes: [
               GoRoute(
-                path: AppRoutes.leaveReview.path,
-                name: AppRoutes.leaveReview.name,
+                path: AppRoute.leaveReview.path,
+                name: AppRoute.leaveReview.name,
                 pageBuilder: (context, state) {
                   final productId = state.pathParameters['id']!;
 
@@ -81,16 +81,16 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
           GoRoute(
-            path: AppRoutes.cart.path,
-            name: AppRoutes.cart.name,
+            path: AppRoute.cart.path,
+            name: AppRoute.cart.name,
             pageBuilder: (context, state) => const MaterialPage(
               fullscreenDialog: true,
               child: ShoppingCartScreen(),
             ),
             routes: [
               GoRoute(
-                path: AppRoutes.checkout.path,
-                name: AppRoutes.checkout.name,
+                path: AppRoute.checkout.path,
+                name: AppRoute.checkout.name,
                 pageBuilder: (context, state) => const MaterialPage(
                   fullscreenDialog: true,
                   child: CheckoutScreen(),
@@ -99,24 +99,24 @@ final goRouterProvider = Provider<GoRouter>((ref) {
             ],
           ),
           GoRoute(
-            path: AppRoutes.orders.path,
-            name: AppRoutes.orders.name,
+            path: AppRoute.orders.path,
+            name: AppRoute.orders.name,
             pageBuilder: (context, state) => const MaterialPage(
               fullscreenDialog: true,
               child: OrdersListScreen(),
             ),
           ),
           GoRoute(
-            path: AppRoutes.account.path,
-            name: AppRoutes.account.name,
+            path: AppRoute.account.path,
+            name: AppRoute.account.name,
             pageBuilder: (context, state) => const MaterialPage(
               fullscreenDialog: true,
               child: AccountScreen(),
             ),
           ),
           GoRoute(
-            path: AppRoutes.signIn.path,
-            name: AppRoutes.signIn.name,
+            path: AppRoute.signIn.path,
+            name: AppRoute.signIn.name,
             pageBuilder: (context, state) => const MaterialPage(
               fullscreenDialog: true,
               child: EmailPasswordSignInScreen(
