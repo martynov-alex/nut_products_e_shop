@@ -7,9 +7,9 @@ abstract class StringValidator {
 }
 
 class RegexValidator implements StringValidator {
-  final String regexSource;
-
   RegexValidator({required this.regexSource});
+
+  final String regexSource;
 
   @override
   bool isValid(String value) {
@@ -32,9 +32,9 @@ class RegexValidator implements StringValidator {
 }
 
 class ValidatorInputFormatter implements TextInputFormatter {
-  final StringValidator editingValidator;
-
   ValidatorInputFormatter({required this.editingValidator});
+
+  final StringValidator editingValidator;
 
   @override
   TextEditingValue formatEditUpdate(
@@ -68,9 +68,9 @@ class NonEmptyStringValidator extends StringValidator {
 }
 
 class MinLengthStringValidator extends StringValidator {
-  final int minLength;
-
   MinLengthStringValidator(this.minLength);
+
+  final int minLength;
 
   @override
   bool isValid(String value) {

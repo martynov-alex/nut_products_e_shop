@@ -7,16 +7,16 @@ import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 /// If available width is smaller than the maximum width, the child use all the
 /// available width.
 class ResponsiveCenter extends StatelessWidget {
-  final double maxContentWidth;
-  final EdgeInsetsGeometry padding;
-  final Widget child;
-
   const ResponsiveCenter({
     required this.child,
     this.maxContentWidth = Breakpoint.desktop,
     this.padding = EdgeInsets.zero,
     super.key,
   });
+
+  final double maxContentWidth;
+  final EdgeInsetsGeometry padding;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {
@@ -38,16 +38,16 @@ class ResponsiveCenter extends StatelessWidget {
 
 /// Sliver-equivalent of [ResponsiveCenter].
 class ResponsiveSliverCenter extends StatelessWidget {
-  final double maxContentWidth;
-  final EdgeInsetsGeometry padding;
-  final Widget child;
-
   const ResponsiveSliverCenter({
     required this.child,
     this.maxContentWidth = Breakpoint.desktop,
     this.padding = EdgeInsets.zero,
     super.key,
   });
+
+  final double maxContentWidth;
+  final EdgeInsetsGeometry padding;
+  final Widget child;
 
   @override
   Widget build(BuildContext context) {

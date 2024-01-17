@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
+import 'package:nut_products_e_shop/src/features/cart/service/cart_service.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 
 /// Shopping cart icon with items count badge
-class ShoppingCartIcon extends StatelessWidget {
+class ShoppingCartIcon extends ConsumerWidget {
   const ShoppingCartIcon({super.key});
 
   // * Keys for testing using find.byKey()
   static const shoppingCartIconKey = Key('shopping-cart');
 
   @override
-  Widget build(BuildContext context) {
-    // TODO(martynov): Read from data source
-    const cartItemsCount = 3;
+  Widget build(BuildContext context, WidgetRef ref) {
+    final cartItemsCount = ref.watch(cartItemsCountProvider);
+
     return Stack(
       children: [
         Center(
@@ -24,7 +26,7 @@ class ShoppingCartIcon extends StatelessWidget {
           ),
         ),
         if (cartItemsCount > 0)
-          const Positioned(
+          Positioned(
             top: Sizes.p4,
             right: Sizes.p4,
             child: ShoppingCartIconBadge(itemsCount: cartItemsCount),
@@ -36,9 +38,9 @@ class ShoppingCartIcon extends StatelessWidget {
 
 /// Icon badge showing the items count
 class ShoppingCartIconBadge extends StatelessWidget {
-  final int itemsCount;
-
   const ShoppingCartIconBadge({required this.itemsCount, super.key});
+
+  final int itemsCount;
 
   @override
   Widget build(BuildContext context) {

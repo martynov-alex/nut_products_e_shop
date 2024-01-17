@@ -9,9 +9,9 @@ import 'package:nut_products_e_shop/src/features/reviews/presentation/product_re
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 class LeaveReviewScreen extends StatelessWidget {
-  final String productId;
-
   const LeaveReviewScreen({required this.productId, super.key});
+
+  final String productId;
 
   @override
   Widget build(BuildContext context) {
@@ -32,14 +32,14 @@ class LeaveReviewScreen extends StatelessWidget {
 }
 
 class LeaveReviewForm extends StatefulWidget {
-  final String productId;
-  final Review? review;
-
   const LeaveReviewForm({
     required this.productId,
     this.review,
     super.key,
   });
+
+  final String productId;
+  final Review? review;
 
   // * Keys for testing using find.byKey()
   static const reviewCommentKey = Key('reviewComment');

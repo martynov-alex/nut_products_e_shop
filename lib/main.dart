@@ -5,6 +5,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/app.dart';
+import 'package:nut_products_e_shop/src/features/cart/data/local/local_cart_repository.dart';
+import 'package:nut_products_e_shop/src/features/cart/data/local/sembast_cart_repository.dart';
+import 'package:nut_products_e_shop/src/features/cart/service/cart_sync_service.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 void main() async {
@@ -21,8 +24,31 @@ void main() async {
   // * https://docs.flutter.dev/testing/errors
   registerErrorHandlers();
 
+  // * Initialize the local cart repository
+  final localCartRepository = await SembastCartRepository.makeDefault();
+
+  // * Create ProviderContainer with any required overrides
+  final container = ProviderContainer(
+    overrides: [
+      // after overrides we can get the repository synchronously
+      localCartRepositoryProvider.overrideWith((ref) {
+        // use ref to set a custom dispose behavior
+        ref.onDispose(localCartRepository.dispose);
+        // then, just return the repository as normal
+        return localCartRepository;
+      }),
+    ],
+  )
+    // * Initialize CartSyncService to start the listener
+    ..read(cartSyncServiceProvider);
+
   // * Entry point of the app
-  runApp(const ProviderScope(child: MyApp()));
+  runApp(
+    UncontrolledProviderScope(
+      container: container,
+      child: const MyApp(),
+    ),
+  );
 }
 
 void registerErrorHandlers() {

@@ -49,17 +49,17 @@ class ProductsGrid extends ConsumerWidget {
 /// Grid widget with content-sized items.
 /// See: https://codewithandrea.com/articles/flutter-layout-grid-content-sized-items/
 class ProductsLayoutGrid extends StatelessWidget {
-  /// Total number of items to display.
-  final int itemCount;
-
-  /// Function used to build a widget for a given index in the grid.
-  final Widget Function(BuildContext, int) itemBuilder;
-
   const ProductsLayoutGrid({
     required this.itemCount,
     required this.itemBuilder,
     super.key,
   });
+
+  /// Total number of items to display.
+  final int itemCount;
+
+  /// Function used to build a widget for a given index in the grid.
+  final Widget Function(BuildContext, int) itemBuilder;
 
   @override
   Widget build(BuildContext context) {

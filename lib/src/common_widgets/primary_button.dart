@@ -8,16 +8,16 @@ import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 /// the text.
 /// @param onPressed - callback to be called when the button is pressed.
 class PrimaryButton extends StatelessWidget {
-  final String text;
-  final bool isLoading;
-  final VoidCallback? onPressed;
-
   const PrimaryButton({
     required this.text,
     this.isLoading = false,
     this.onPressed,
     super.key,
   });
+
+  final String text;
+  final bool isLoading;
+  final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {

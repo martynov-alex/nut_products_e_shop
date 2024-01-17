@@ -6,12 +6,12 @@ import 'package:flutter_test/flutter_test.dart';
 const _kGoldenDiffTolerance = 0.05;
 
 class GoldenDiffComparator extends LocalFileComparator {
-  final double tolerance;
-
   GoldenDiffComparator(
     String testFile, {
     this.tolerance = _kGoldenDiffTolerance,
   }) : super(Uri.parse(testFile));
+
+  final double tolerance;
 
   @override
   Future<bool> compare(Uint8List imageBytes, Uri golden) async {
@@ -27,7 +27,7 @@ class GoldenDiffComparator extends LocalFileComparator {
 
     // ignore: avoid_print
     print('''
-      'A tolerable difference of ${result.diffPercent * 100}% was found when comparing $golden.
+      A tolerable difference of ${result.diffPercent * 100}% was found when comparing $golden.
       The current golden test maximum tolerance setting is ${tolerance * 100}%.
       ''');
     return result.passed || result.diffPercent <= tolerance;

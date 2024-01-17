@@ -123,6 +123,15 @@ class _AddressPageState extends State<AddressScreen> {
 
 // Reusable address form field
 class AddressFormField extends StatelessWidget {
+  const AddressFormField({
+    required this.controller,
+    required this.labelText,
+    this.keyboardType,
+    this.enabled = true,
+    this.formFieldKey,
+    super.key,
+  });
+
   /// Controller used to read out the value in the parent widget
   final TextEditingController controller;
   final String labelText;
@@ -133,15 +142,6 @@ class AddressFormField extends StatelessWidget {
 
   /// Key used in the widget tests
   final Key? formFieldKey;
-
-  const AddressFormField({
-    required this.controller,
-    required this.labelText,
-    this.keyboardType,
-    this.enabled = true,
-    this.formFieldKey,
-    super.key,
-  });
 
   @override
   Widget build(BuildContext context) {

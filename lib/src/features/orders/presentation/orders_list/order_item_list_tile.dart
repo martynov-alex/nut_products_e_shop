@@ -11,9 +11,9 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Shows an individual order item, including price and quantity.
 class OrderItemListTile extends ConsumerWidget {
-  final Item item;
-
   const OrderItemListTile({required this.item, super.key});
+
+  final Item item;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {

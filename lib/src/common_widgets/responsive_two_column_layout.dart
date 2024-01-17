@@ -4,17 +4,6 @@ import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
 /// Responsive layout that shows two child widgets side by side if there is
 /// enough space, or vertically stacked if there is not enough space.
 class ResponsiveTwoColumnLayout extends StatelessWidget {
-  final Widget startContent;
-  final Widget endContent;
-  final double spacing;
-  final int startFlex;
-  final int endFlex;
-  final double breakpoint;
-  final MainAxisAlignment rowMainAxisAlignment;
-  final CrossAxisAlignment rowCrossAxisAlignment;
-  final MainAxisAlignment columnMainAxisAlignment;
-  final CrossAxisAlignment columnCrossAxisAlignment;
-
   const ResponsiveTwoColumnLayout({
     required this.startContent,
     required this.endContent,
@@ -28,6 +17,17 @@ class ResponsiveTwoColumnLayout extends StatelessWidget {
     this.columnCrossAxisAlignment = CrossAxisAlignment.stretch,
     super.key,
   });
+
+  final Widget startContent;
+  final Widget endContent;
+  final double spacing;
+  final int startFlex;
+  final int endFlex;
+  final double breakpoint;
+  final MainAxisAlignment rowMainAxisAlignment;
+  final CrossAxisAlignment rowCrossAxisAlignment;
+  final MainAxisAlignment columnMainAxisAlignment;
+  final CrossAxisAlignment columnCrossAxisAlignment;
 
   @override
   Widget build(BuildContext context) {

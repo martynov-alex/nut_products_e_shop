@@ -13,9 +13,9 @@ import 'package:nut_products_e_shop/src/features/products/presentation/home_app_
 import '../../mocks.dart';
 
 class AuthRobot {
-  final WidgetTester tester;
-
   AuthRobot(this.tester);
+
+  final WidgetTester tester;
 
   Future<void> openEmailPasswordSignInScreen() async {
     final finder = find.byKey(MoreMenuButton.signInKey);

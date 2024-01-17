@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
 import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
@@ -10,9 +11,9 @@ import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Shows all the details for a given order
 class OrderCard extends StatelessWidget {
-  final Order order;
-
   const OrderCard({required this.order, super.key});
+
+  final Order order;
 
   @override
   Widget build(BuildContext context) {
@@ -36,17 +37,18 @@ class OrderCard extends StatelessWidget {
 /// Order header showing the following:
 /// - Total order amount
 /// - Order date
-class OrderHeader extends StatelessWidget {
-  final Order order;
-
+class OrderHeader extends ConsumerWidget {
   const OrderHeader({required this.order, super.key});
 
+  final Order order;
+
   @override
-  Widget build(BuildContext context) {
-    // TODO(martynov): Inject currency formatter
-    final totalFormatted = kCurrencyFormatter.format(order.total);
-    // TODO(martynov): Inject date formatter
-    final dateFormatted = kDateFormatter.format(order.orderDate);
+  Widget build(BuildContext context, WidgetRef ref) {
+    final totalFormatted =
+        ref.watch(currencyFormatterProvider).format(order.total);
+    final dateFormatted =
+        ref.watch(dateFormatterProvider).format(order.orderDate);
+
     return Container(
       color: Colors.grey[200],
       padding: const EdgeInsets.all(Sizes.p16),
@@ -88,9 +90,9 @@ class OrderHeader extends StatelessWidget {
 
 /// List of items in the order
 class OrderItemsList extends StatelessWidget {
-  final Order order;
-
   const OrderItemsList({required this.order, super.key});
+
+  final Order order;
 
   @override
   Widget build(BuildContext context) {

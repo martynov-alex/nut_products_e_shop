@@ -10,16 +10,16 @@ import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// Responsive widget showing the cart items and the checkout button
 class ShoppingCartItemsBuilder extends StatelessWidget {
-  final List<Item> items;
-  final Widget Function(BuildContext, Item, int) itemBuilder;
-  final WidgetBuilder ctaBuilder;
-
   const ShoppingCartItemsBuilder({
     required this.items,
     required this.itemBuilder,
     required this.ctaBuilder,
     super.key,
   });
+
+  final List<Item> items;
+  final Widget Function(BuildContext, Item, int) itemBuilder;
+  final WidgetBuilder ctaBuilder;
 
   @override
   Widget build(BuildContext context) {
