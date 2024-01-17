@@ -90,7 +90,7 @@ final cartTotalProvider = Provider.autoDispose<double>((ref) {
 
   if (cart.items.isEmpty && productsList.isEmpty) return 0.0;
 
-  return cart.items.entries.fold<double>(
+  final total = cart.items.entries.fold<double>(
     0.0,
     (previousValue, item) {
       // For Cart item:
@@ -101,6 +101,8 @@ final cartTotalProvider = Provider.autoDispose<double>((ref) {
       return previousValue + (product.price * item.value);
     },
   );
+
+  return total;
 });
 
 final itemAvailableQuantityProvider =
