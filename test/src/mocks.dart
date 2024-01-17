@@ -9,7 +9,7 @@ import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_reposit
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 
 const testEmail = 'test@test.ru';
-const testPassword = '12345678';
+const testPassword = 'test1234';
 final testUser = AppUser(
   uid: testEmail.split('').reversed.join(),
   email: testEmail,

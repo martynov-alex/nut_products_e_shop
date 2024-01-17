@@ -14,12 +14,18 @@ void main() {
       expect(authRepository.authStateChanges(), emits(null));
     });
 
-    test('currentUser is not null after sign in', () async {
+    test('sign in throws when user not found', () async {
       final authRepository = makeFakeAuthRepository();
       addTearDown(authRepository.dispose);
-      await authRepository.signInWithEmailAndPassword(testEmail, testPassword);
-      expect(authRepository.currentUser, testUser);
-      expect(authRepository.authStateChanges(), emits(testUser));
+      await expectLater(
+        () => authRepository.signInWithEmailAndPassword(
+          testEmail,
+          testPassword,
+        ),
+        throwsA(isA<Exception>()),
+      );
+      expect(authRepository.currentUser, null);
+      expect(authRepository.authStateChanges(), emits(null));
     });
 
     test('currentUser is not null after registration', () async {
@@ -36,7 +42,10 @@ void main() {
     test('currentUser is null after signOut', () async {
       final authRepository = makeFakeAuthRepository();
       addTearDown(authRepository.dispose);
-      await authRepository.signInWithEmailAndPassword(testEmail, testPassword);
+      await authRepository.createUserWithEmailAndPassword(
+        testEmail,
+        testPassword,
+      );
       expect(authRepository.currentUser, testUser);
       expect(authRepository.authStateChanges(), emits(testUser));
       // * also there is another way to test this, but expect should be here,
@@ -54,10 +63,10 @@ void main() {
       expect(authRepository.authStateChanges(), emits(null));
     });
 
-    test('signIn after dispose throws exception', () {
+    test('create user after dispose throws exception', () {
       final authRepository = makeFakeAuthRepository()..dispose();
       expect(
-        () async => authRepository.signInWithEmailAndPassword(
+        () async => authRepository.createUserWithEmailAndPassword(
           testEmail,
           testPassword,
         ),

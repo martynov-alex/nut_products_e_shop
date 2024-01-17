@@ -9,7 +9,7 @@ class AppUser {
 
   const AppUser({
     required this.uid,
-    this.email,
+    required this.email,
   });
 
   @override
