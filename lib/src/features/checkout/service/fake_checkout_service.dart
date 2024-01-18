@@ -5,6 +5,7 @@ import 'package:nut_products_e_shop/src/features/cart/domain/cart.dart';
 import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_repository.dart';
 import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
+import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 /// A fake checkout service that doesn't process real payments.
 class FakeCheckoutService {
@@ -52,7 +53,7 @@ class FakeCheckoutService {
       // 4. Empty the cart
       await remoteCartRepository.setCart(uid, const Cart());
     } else {
-      throw StateError("Can't place an order if the cart is empty");
+      throw StateError("Can't place an order if the cart is empty".hardcoded);
     }
   }
 

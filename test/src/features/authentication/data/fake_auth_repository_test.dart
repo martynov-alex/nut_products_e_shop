@@ -1,4 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
+import 'package:nut_products_e_shop/src/exceptions/app_exception.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 
 import '../../../mocks.dart';
@@ -22,7 +23,7 @@ void main() {
           testEmail,
           testPassword,
         ),
-        throwsA(isA<Exception>()),
+        throwsA(isA<UserNotFoundException>()),
       );
       expect(authRepository.currentUser, null);
       expect(authRepository.authStateChanges(), emits(null));

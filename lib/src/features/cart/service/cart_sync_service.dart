@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nut_products_e_shop/src/exceptions/error_logger.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
 import 'package:nut_products_e_shop/src/features/cart/data/local/local_cart_repository.dart';
@@ -53,8 +54,8 @@ class CartSyncService {
         // remove all items from the local cart
         await localCartRepository.setCart(const Cart());
       }
-    } on Exception catch (_) {
-      // TODO(martynov): Handle error and/or rethrow
+    } on Exception catch (e, st) {
+      ref.read(errorLoggerProvider).logError(e, st);
     }
   }
 

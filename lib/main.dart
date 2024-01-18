@@ -5,6 +5,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_web_plugins/url_strategy.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/app.dart';
+import 'package:nut_products_e_shop/src/exceptions/async_error_logger.dart';
+import 'package:nut_products_e_shop/src/exceptions/error_logger.dart';
 import 'package:nut_products_e_shop/src/features/cart/data/local/local_cart_repository.dart';
 import 'package:nut_products_e_shop/src/features/cart/data/local/sembast_cart_repository.dart';
 import 'package:nut_products_e_shop/src/features/cart/service/cart_sync_service.dart';
@@ -20,10 +22,6 @@ void main() async {
   // More info here: https://docs.google.com/document/d/1VCuB85D5kYxPR3qYOjVmw8boAGKb7k62heFyfFHTOvw/edit
   GoRouter.optionURLReflectsImperativeAPIs = true;
 
-  // * Register error handlers. For more info, see:
-  // * https://docs.flutter.dev/testing/errors
-  registerErrorHandlers();
-
   // * Initialize the local cart repository
   final localCartRepository = await SembastCartRepository.makeDefault();
 
@@ -38,9 +36,16 @@ void main() async {
         return localCartRepository;
       }),
     ],
+    observers: [AsyncErrorLogger()],
   )
     // * Initialize CartSyncService to start the listener
     ..read(cartSyncServiceProvider);
+
+  final errorLogger = container.read(errorLoggerProvider);
+
+  // * Register error handlers. For more info, see:
+  // * https://docs.flutter.dev/testing/errors
+  registerErrorHandlers(errorLogger);
 
   // * Entry point of the app
   runApp(
@@ -51,16 +56,16 @@ void main() async {
   );
 }
 
-void registerErrorHandlers() {
+void registerErrorHandlers(ErrorLogger errorLogger) {
   // * Show some error UI if any uncaught exception happens
   FlutterError.onError = (details) {
     FlutterError.presentError(details);
-    debugPrint(details.toString());
+    errorLogger.logError(details.exception, details.stack);
   };
 
   // * Handle errors from the underlying platform/OS
   PlatformDispatcher.instance.onError = (error, stack) {
-    debugPrint(error.toString());
+    errorLogger.logError(error, stack);
     return true;
   };
 
