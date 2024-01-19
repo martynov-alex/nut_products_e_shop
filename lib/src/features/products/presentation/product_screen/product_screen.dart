@@ -29,6 +29,7 @@ class ProductScreen extends StatelessWidget {
       body: Consumer(
         builder: (context, ref, _) {
           final productValue = ref.watch(productProvider(productId));
+
           return AsyncValueWidget<Product?>(
             value: productValue,
             data: (product) => product == null

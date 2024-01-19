@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:nut_products_e_shop/src/constants/test_products.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
+import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/features/reviews/data/fake_reviews_repository.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
 import 'package:nut_products_e_shop/src/features/reviews/service/reviews_service.dart';
@@ -9,14 +11,17 @@ import 'package:nut_products_e_shop/src/features/reviews/service/reviews_service
 import '../../../mocks.dart';
 
 void main() {
-  const testProductId = '1';
+  final testProductId = kTestProducts[0].id;
   final testReview =
       Review(rating: 5, comment: '', date: DateTime(2022, 7, 31));
   late MockAuthRepository authRepository;
   late MockReviewsRepository reviewsRepository;
+  late MockProductsRepository productsRepository;
+
   setUp(() {
     authRepository = MockAuthRepository();
     reviewsRepository = MockReviewsRepository();
+    productsRepository = MockProductsRepository();
   });
 
   ReviewsService makeReviewsService() {
@@ -24,6 +29,7 @@ void main() {
       overrides: [
         authRepositoryProvider.overrideWithValue(authRepository),
         reviewsRepositoryProvider.overrideWithValue(reviewsRepository),
+        productsRepositoryProvider.overrideWithValue(productsRepository),
       ],
     );
     addTearDown(container.dispose);
@@ -51,6 +57,14 @@ void main() {
             productId: testProductId,
             uid: testUser.uid,
             review: testReview,
+          )).thenAnswer((_) => Future.value());
+      when(() => reviewsRepository.fetchReviews(testProductId))
+          .thenAnswer((_) => Future.value([]));
+      when(() => productsRepository.getProduct(testProductId)).thenReturn(
+        kTestProducts[0],
+      );
+      when(() => productsRepository.setProduct(
+            kTestProducts[0],
           )).thenAnswer((_) => Future.value());
       final reviewsService = makeReviewsService();
       // run
