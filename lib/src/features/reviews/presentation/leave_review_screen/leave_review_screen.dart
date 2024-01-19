@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:nut_products_e_shop/src/common_widgets/async_value_widget.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
+import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_screen/leave_review_controller.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_rating_bar.dart';
+import 'package:nut_products_e_shop/src/features/reviews/service/reviews_service.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
+import 'package:nut_products_e_shop/src/utils/async_value_ui.dart';
 
 class LeaveReviewScreen extends StatelessWidget {
   const LeaveReviewScreen({required this.productId, super.key});
-
-  final String productId;
+  final ProductId productId;
 
   @override
   Widget build(BuildContext context) {
-    // TODO(martynov): Read from data source
-    const review = null;
     return Scaffold(
       appBar: AppBar(
         title: Text('Leave a review'.hardcoded),
@@ -24,31 +26,39 @@ class LeaveReviewScreen extends StatelessWidget {
       body: ResponsiveCenter(
         maxContentWidth: Breakpoint.tablet,
         padding: const EdgeInsets.all(Sizes.p16),
-        // ignore: avoid_redundant_argument_values
-        child: LeaveReviewForm(productId: productId, review: review),
+        child: Consumer(
+          builder: (_, ref, __) {
+            final reviewValue = ref.watch(userReviewFutureProvider(productId));
+            return AsyncValueWidget(
+              value: reviewValue,
+              data: (review) =>
+                  LeaveReviewForm(productId: productId, review: review),
+            );
+          },
+        ),
       ),
     );
   }
 }
 
-class LeaveReviewForm extends StatefulWidget {
+class LeaveReviewForm extends ConsumerStatefulWidget {
   const LeaveReviewForm({
     required this.productId,
     this.review,
     super.key,
   });
 
-  final String productId;
+  final ProductId productId;
   final Review? review;
 
   // * Keys for testing using find.byKey()
   static const reviewCommentKey = Key('reviewComment');
 
   @override
-  State<LeaveReviewForm> createState() => _LeaveReviewFormState();
+  ConsumerState<LeaveReviewForm> createState() => _LeaveReviewFormState();
 }
 
-class _LeaveReviewFormState extends State<LeaveReviewForm> {
+class _LeaveReviewFormState extends ConsumerState<LeaveReviewForm> {
   final _controller = TextEditingController();
 
   double _rating = 0;
@@ -58,8 +68,8 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
     super.initState();
     final review = widget.review;
     if (review != null) {
+      _rating = review.rating;
       _controller.text = review.comment;
-      _rating = review.score;
     }
   }
 
@@ -70,20 +80,13 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
     super.dispose();
   }
 
-  Future<void> _submitReview() async {
-    await showNotImplementedAlertDialog(context: context);
-    // only submit if new rating or different from before
-    // final previousReview = widget.review;
-    // if (previousReview == null ||
-    //     _rating != previousReview.score ||
-    //     _controller.text != previousReview.comment) {
-    //     Submit review
-    // }
-    // Navigator.of(context).pop();
-  }
-
   @override
   Widget build(BuildContext context) {
+    ref.listen(leaveReviewControllerProvider,
+        (_, state) => state.showAlertDialogOnError(context));
+
+    final state = ref.watch(leaveReviewControllerProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -114,10 +117,17 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
         gapH32,
         PrimaryButton(
           text: 'Submit'.hardcoded,
-          // TODO(martynov): Loading state
-          // ignore: avoid_redundant_argument_values
-          isLoading: false,
-          onPressed: _rating == 0 ? null : _submitReview,
+          isLoading: state.isLoading,
+          onPressed: state.isLoading || _rating == 0
+              ? null
+              : () =>
+                  ref.read(leaveReviewControllerProvider.notifier).submitReview(
+                        productId: widget.productId,
+                        rating: _rating,
+                        comment: _controller.text,
+                        onSuccess: Navigator.of(context).pop,
+                        previousReview: widget.review,
+                      ),
         )
       ],
     );

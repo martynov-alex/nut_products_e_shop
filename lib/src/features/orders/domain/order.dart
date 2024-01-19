@@ -1,4 +1,5 @@
 import 'package:nut_products_e_shop/src/exceptions/app_exception.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 
 /// Order status
 enum OrderStatus { confirmed, shipped, delivered }
@@ -34,7 +35,7 @@ class Order {
   final String userId;
 
   /// List of items in that order
-  final Map<String, int> items;
+  final Map<ProductId, int> items;
   final OrderStatus orderStatus;
   final DateTime orderDate;
   final double total;

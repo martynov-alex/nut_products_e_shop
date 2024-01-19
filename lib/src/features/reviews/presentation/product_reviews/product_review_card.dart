@@ -24,13 +24,11 @@ class ProductReviewCard extends ConsumerWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 ProductRatingBar(
-                  initialRating: review.score,
+                  initialRating: review.rating,
                   ignoreGestures: true,
                   itemSize: 20,
-                  // TODO(martynov): Implement onRatingUpdate
-                  onRatingUpdate: (value) {
-                    showNotImplementedAlertDialog(context: context);
-                  },
+                  // * ok to use an empty callback here since we're ignoring gestures
+                  onRatingUpdate: (value) {},
                 ),
                 Text(dateFormatted,
                     style: Theme.of(context).textTheme.bodySmall),
