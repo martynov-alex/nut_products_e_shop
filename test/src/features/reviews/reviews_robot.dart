@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_page/leave_review_screen.dart';
+import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_review_card.dart';
 
 class ReviewsRobot {

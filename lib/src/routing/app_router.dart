@@ -10,7 +10,7 @@ import 'package:nut_products_e_shop/src/features/checkout/presentation/checkout_
 import 'package:nut_products_e_shop/src/features/orders/presentation/orders_list/orders_list_screen.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_screen.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/products_list/products_list_screen.dart';
-import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_page/leave_review_screen.dart';
+import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
 import 'package:nut_products_e_shop/src/routing/go_router_refresh_stream.dart';
 import 'package:nut_products_e_shop/src/routing/not_found_screen.dart';
 
