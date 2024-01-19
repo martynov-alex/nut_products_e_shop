@@ -14,8 +14,8 @@ class FakeReviewsRepository {
   /// value: map of [Review] values for each user ID
   final _reviews = InMemoryStore<Map<ProductId, Map<String, Review>>>({});
 
-  /// Single review for a given product given by a specific user
-  /// Emits non-null values if the user has reviewed the product
+  /// Single review for a given product given by a specific user.
+  /// Emits non-null values if the user has reviewed the product.
   Stream<Review?> watchUserReview(ProductId id, String uid) {
     return _reviews.stream.map((reviewsData) {
       // access nested maps by productId, then uid
@@ -23,42 +23,34 @@ class FakeReviewsRepository {
     });
   }
 
-  /// Single review for a given product given by a specific user
-  /// Returns a non-null value if the user has reviewed the product
+  /// Single review for a given product given by a specific user.
+  /// Returns a non-null value if the user has reviewed the product.
   Future<Review?> fetchUserReview(ProductId id, String uid) async {
     await delay(addDelay: addDelay);
     // access nested maps by productId, then uid
     return Future.value(_reviews.value[id]?[uid]);
   }
 
-  /// All reviews for a given product from all users
+  /// All reviews for a given product from all users.
   Stream<List<Review>> watchReviews(ProductId id) {
     return _reviews.stream.map((reviewsData) {
       // access nested maps by productId, then uid
-      final reviews = reviewsData[id];
-      if (reviews == null) {
-        return [];
-      } else {
-        return reviews.values.toList();
-      }
+      final reviews = reviewsData[id] ?? {};
+      return reviews.values.toList();
     });
   }
 
-  /// All reviews for a given product from all users
+  /// All reviews for a given product from all users.
   Future<List<Review>> fetchReviews(ProductId id) {
     // access nested maps by productId, then uid
-    final reviews = _reviews.value[id];
-    if (reviews == null) {
-      return Future.value([]);
-    } else {
-      return Future.value(reviews.values.toList());
-    }
+    final reviews = _reviews.value[id] ?? {};
+    return Future.value(reviews.values.toList());
   }
 
-  /// Submit a new review or update an existing review for a given product
-  /// @param productId the product identifier
-  /// @param uid the identifier of the user who is leaving the review
-  /// @param review a [Review] object with the review information
+  /// Submit a new review or update an existing review for a given product.
+  /// [productId] — the product identifier
+  /// [uid] — the identifier of the user who is leaving the review
+  /// [review] — a [Review] object with the review information
   Future<void> setReview({
     required ProductId productId,
     required String uid,
