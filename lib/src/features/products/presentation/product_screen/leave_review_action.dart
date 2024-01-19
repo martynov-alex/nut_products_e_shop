@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/common_widgets/custom_text_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_two_column_layout.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
-import 'package:nut_products_e_shop/src/features/orders/domain/purchase.dart';
+import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
 import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
@@ -12,20 +13,27 @@ import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 /// Simple widget to show the product purchase date along with a button to
 /// leave a review.
 class LeaveReviewAction extends ConsumerWidget {
-  const LeaveReviewAction({
-    required this.productId,
-    super.key,
-  });
-  final String productId;
+  const LeaveReviewAction({required this.productId, super.key});
+
+  final ProductId productId;
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     // TODO(martynov): Read from data source
-    final purchase = Purchase(orderId: 'abc', orderDate: DateTime.now());
-    if (purchase != null) {
-      final dateFormatted =
-          ref.watch(dateFormatterProvider).format(purchase.orderDate);
+    final orders = [
+      Order(
+        id: 'abc',
+        userId: '123',
+        items: {productId: 1},
+        orderStatus: OrderStatus.confirmed,
+        orderDate: DateTime.now(),
+        total: 15.0,
+      )
+    ];
 
+    if (orders.isNotEmpty) {
+      final dateFormatted =
+          ref.watch(dateFormatterProvider).format(orders.first.orderDate);
       return Column(
         children: [
           const Divider(),
@@ -55,7 +63,7 @@ class LeaveReviewAction extends ConsumerWidget {
         ],
       );
     } else {
-      return const SizedBox();
+      return const SizedBox.shrink();
     }
   }
 }

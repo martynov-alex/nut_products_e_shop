@@ -7,6 +7,8 @@ import 'package:nut_products_e_shop/src/features/cart/service/cart_service.dart'
 import 'package:nut_products_e_shop/src/features/checkout/service/fake_checkout_service.dart';
 import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_repository.dart';
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
+import 'package:nut_products_e_shop/src/features/reviews/data/fake_reviews_repository.dart';
+import 'package:nut_products_e_shop/src/features/reviews/service/reviews_service.dart';
 
 const testEmail = 'test@test.ru';
 const testPassword = 'test1234';
@@ -28,3 +30,7 @@ class MockProductsRepository extends Mock implements FakeProductsRepository {}
 class MockOrdersRepository extends Mock implements FakeOrdersRepository {}
 
 class MockCheckoutService extends Mock implements FakeCheckoutService {}
+
+class MockReviewsRepository extends Mock implements FakeReviewsRepository {}
+
+class MockReviewsService extends Mock implements ReviewsService {}

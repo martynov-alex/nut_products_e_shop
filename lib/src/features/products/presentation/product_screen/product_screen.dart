@@ -20,7 +20,7 @@ import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
 class ProductScreen extends StatelessWidget {
   const ProductScreen({required this.productId, super.key});
 
-  final String productId;
+  final ProductId productId;
 
   @override
   Widget build(BuildContext context) {

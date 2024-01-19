@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/common_widgets/primary_button.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_rating_bar.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 
 class LeaveReviewScreen extends StatelessWidget {
   const LeaveReviewScreen({required this.productId, super.key});
-
-  final String productId;
+  final ProductId productId;
 
   @override
   Widget build(BuildContext context) {
@@ -24,31 +25,30 @@ class LeaveReviewScreen extends StatelessWidget {
       body: ResponsiveCenter(
         maxContentWidth: Breakpoint.tablet,
         padding: const EdgeInsets.all(Sizes.p16),
-        // ignore: avoid_redundant_argument_values
         child: LeaveReviewForm(productId: productId, review: review),
       ),
     );
   }
 }
 
-class LeaveReviewForm extends StatefulWidget {
+class LeaveReviewForm extends ConsumerStatefulWidget {
   const LeaveReviewForm({
     required this.productId,
     this.review,
     super.key,
   });
 
-  final String productId;
+  final ProductId productId;
   final Review? review;
 
   // * Keys for testing using find.byKey()
   static const reviewCommentKey = Key('reviewComment');
 
   @override
-  State<LeaveReviewForm> createState() => _LeaveReviewFormState();
+  ConsumerState<LeaveReviewForm> createState() => _LeaveReviewFormState();
 }
 
-class _LeaveReviewFormState extends State<LeaveReviewForm> {
+class _LeaveReviewFormState extends ConsumerState<LeaveReviewForm> {
   final _controller = TextEditingController();
 
   double _rating = 0;
@@ -56,11 +56,7 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
   @override
   void initState() {
     super.initState();
-    final review = widget.review;
-    if (review != null) {
-      _controller.text = review.comment;
-      _rating = review.score;
-    }
+    // TODO(martynov): Initialize state
   }
 
   @override
@@ -68,18 +64,6 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
     // * TextEditingControllers should be always disposed
     _controller.dispose();
     super.dispose();
-  }
-
-  Future<void> _submitReview() async {
-    await showNotImplementedAlertDialog(context: context);
-    // only submit if new rating or different from before
-    // final previousReview = widget.review;
-    // if (previousReview == null ||
-    //     _rating != previousReview.score ||
-    //     _controller.text != previousReview.comment) {
-    //     Submit review
-    // }
-    // Navigator.of(context).pop();
   }
 
   @override
@@ -115,9 +99,11 @@ class _LeaveReviewFormState extends State<LeaveReviewForm> {
         PrimaryButton(
           text: 'Submit'.hardcoded,
           // TODO(martynov): Loading state
-          // ignore: avoid_redundant_argument_values
           isLoading: false,
-          onPressed: _rating == 0 ? null : _submitReview,
+          onPressed: _rating == 0
+              ? null
+              // TODO(martynov): submit review
+              : () => showNotImplementedAlertDialog(context: context),
         )
       ],
     );

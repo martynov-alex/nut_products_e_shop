@@ -1,30 +1,32 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/common_widgets/responsive_center.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/constants/breakpoints.dart';
+import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_review_card.dart';
 
 /// Shows the list of reviews for a given product ID
-class ProductReviewsList extends StatelessWidget {
+class ProductReviewsList extends ConsumerWidget {
   const ProductReviewsList({required this.productId, super.key});
 
-  final String productId;
+  final ProductId productId;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
     // TODO(martynov): Read from data source
     final reviews = <Review>[
-      Review(
-        date: DateTime(2022, 2, 12),
-        score: 4.5,
-        comment: 'Great product, would buy again!',
-      ),
-      Review(
-        date: DateTime(2022, 2, 10),
-        score: 4.0,
-        comment: 'Looks great but the packaging was damaged.',
-      ),
+      // Review(
+      //   date: DateTime(2022, 2, 12),
+      //   score: 4.5,
+      //   comment: 'Great product, would buy again!',
+      // ),
+      // Review(
+      //   date: DateTime(2022, 2, 10),
+      //   score: 4.0,
+      //   comment: 'Looks great but the packaging was damaged.',
+      // ),
     ];
     return SliverList(
       delegate: SliverChildBuilderDelegate(

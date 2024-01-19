@@ -7,10 +7,12 @@ import 'package:nut_products_e_shop/src/features/cart/domain/cart.dart';
 import 'package:nut_products_e_shop/src/features/checkout/service/fake_checkout_service.dart';
 import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_repository.dart';
 import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
+import 'package:nut_products_e_shop/src/utils/current_date_provider.dart';
 
 import '../../../mocks.dart';
 
 void main() {
+  final testDate = DateTime(2022, 7, 13);
   setUpAll(() {
     // needed for MockOrdersRepository
     registerFallbackValue(Order(
@@ -18,7 +20,7 @@ void main() {
       userId: testUser.uid,
       items: {'1': 1},
       orderStatus: OrderStatus.confirmed,
-      orderDate: DateTime(2022, 7, 13),
+      orderDate: testDate,
       total: 15,
     ));
     // needed for MockRemoteCartRepository
@@ -40,6 +42,7 @@ void main() {
         authRepositoryProvider.overrideWithValue(authRepository),
         remoteCartRepositoryProvider.overrideWithValue(remoteCartRepository),
         ordersRepositoryProvider.overrideWithValue(ordersRepository),
+        currentDateBuilderProvider.overrideWithValue(() => testDate),
       ],
     );
     addTearDown(container.dispose);
@@ -66,7 +69,7 @@ void main() {
       expect(checkoutService.placeOrder, throwsStateError);
     });
 
-    test('non-empty cart, creates order', () async {
+    test('non-empty cart and purchase, empties cart, creates order', () async {
       // setup
       when(() => authRepository.currentUser).thenReturn(testUser);
       when(() => remoteCartRepository.fetchCart(testUser.uid)).thenAnswer(
@@ -84,7 +87,8 @@ void main() {
       await checkoutService.placeOrder();
       // verify
       verify(() => ordersRepository.addOrder(testUser.uid, any())).called(1);
-      verify(() => remoteCartRepository.setCart(testUser.uid, const Cart()));
+      verify(() => remoteCartRepository.setCart(testUser.uid, const Cart()))
+          .called(1);
     });
   });
 }
