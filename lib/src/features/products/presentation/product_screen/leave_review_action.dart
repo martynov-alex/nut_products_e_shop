@@ -9,7 +9,7 @@ import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/features/reviews/service/reviews_service.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
 import 'package:nut_products_e_shop/src/routing/app_router.dart';
-import 'package:nut_products_e_shop/src/utils/date_formatter_provider.dart';
+import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Simple widget to show the product purchase date along with a button to
 /// leave a review.

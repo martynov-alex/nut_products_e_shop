@@ -1,12 +1,15 @@
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_repository.dart';
 import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'user_orders_provider.g.dart';
 
 /// Watch the list of user orders.
 /// NOTE: Only watch this provider if the user is signed in.
-final userOrdersProvider = StreamProvider.autoDispose<List<Order>>((ref) {
+@riverpod
+Stream<List<Order>> userOrders(UserOrdersRef ref) {
   final user = ref.watch(authStateChangesProvider).value;
   if (user != null) {
     return ref.watch(ordersRepositoryProvider).watchUserOrders(user.uid);
@@ -14,18 +17,19 @@ final userOrdersProvider = StreamProvider.autoDispose<List<Order>>((ref) {
     // If the user is null, return an empty list (no orders)
     return Stream.value([]);
   }
-});
+}
 
 /// Check if a product was previously purchased by the user.
-final matchingUserOrdersProvider =
-    StreamProvider.autoDispose.family<List<Order>, ProductId>((ref, productId) {
+@riverpod
+Stream<List<Order>> matchingUserOrders(
+    MatchingUserOrdersRef ref, ProductId id) {
   final user = ref.watch(authStateChangesProvider).value;
   if (user != null) {
     return ref
         .watch(ordersRepositoryProvider)
-        .watchUserOrders(user.uid, productId: productId);
+        .watchUserOrders(user.uid, productId: id);
   } else {
     // If the user is null, return an empty list (no orders)
     return Stream.value([]);
   }
-});
+}

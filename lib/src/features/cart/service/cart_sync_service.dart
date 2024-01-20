@@ -10,6 +10,9 @@ import 'package:nut_products_e_shop/src/features/cart/domain/cart.dart';
 import 'package:nut_products_e_shop/src/features/cart/domain/item.dart';
 import 'package:nut_products_e_shop/src/features/cart/domain/mutable_cart.dart';
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'cart_sync_service.g.dart';
 
 class CartSyncService {
   CartSyncService(this.ref) {
@@ -91,6 +94,7 @@ class CartSyncService {
   }
 }
 
-final cartSyncServiceProvider = Provider<CartSyncService>((ref) {
+@Riverpod(keepAlive: true)
+CartSyncService cartSyncService(CartSyncServiceRef ref) {
   return CartSyncService(ref);
-});
+}

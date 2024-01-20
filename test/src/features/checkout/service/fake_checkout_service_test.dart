@@ -7,7 +7,7 @@ import 'package:nut_products_e_shop/src/features/cart/domain/cart.dart';
 import 'package:nut_products_e_shop/src/features/checkout/service/fake_checkout_service.dart';
 import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_repository.dart';
 import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
-import 'package:nut_products_e_shop/src/utils/current_date_builder_provider.dart';
+import 'package:nut_products_e_shop/src/utils/current_date_builder.dart';
 
 import '../../../mocks.dart';
 

@@ -6,7 +6,10 @@ import 'package:nut_products_e_shop/src/features/orders/data/fake_orders_reposit
 import 'package:nut_products_e_shop/src/features/orders/domain/order.dart';
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:nut_products_e_shop/src/utils/current_date_builder_provider.dart';
+import 'package:nut_products_e_shop/src/utils/current_date_builder.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'fake_checkout_service.g.dart';
 
 /// A fake checkout service that doesn't process real payments.
 class FakeCheckoutService {
@@ -75,6 +78,7 @@ class FakeCheckoutService {
   }
 }
 
-final checkoutServiceProvider = Provider<FakeCheckoutService>((ref) {
+@riverpod
+FakeCheckoutService checkoutService(CheckoutServiceRef ref) {
   return FakeCheckoutService(ref);
-});
+}

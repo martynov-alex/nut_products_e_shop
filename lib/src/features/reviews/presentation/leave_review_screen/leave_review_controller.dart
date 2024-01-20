@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
 import 'package:nut_products_e_shop/src/features/reviews/service/reviews_service.dart';
-import 'package:nut_products_e_shop/src/utils/current_date_builder_provider.dart';
+import 'package:nut_products_e_shop/src/utils/current_date_builder.dart';
 
 class LeaveReviewController extends StateNotifier<AsyncValue<void>> {
   LeaveReviewController({

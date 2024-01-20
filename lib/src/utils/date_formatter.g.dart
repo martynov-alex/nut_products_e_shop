@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'date_formatter_provider.dart';
+part of 'date_formatter.dart';
 
 // **************************************************************************
 // RiverpodGenerator

@@ -1,16 +1,17 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/exceptions/app_exception.dart';
 import 'package:nut_products_e_shop/src/features/authentication/domain/app_user.dart';
 import 'package:nut_products_e_shop/src/features/authentication/domain/fake_app_user.dart';
 import 'package:nut_products_e_shop/src/utils/delay.dart';
 import 'package:nut_products_e_shop/src/utils/in_memory_state.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'fake_auth_repository.g.dart';
 
 class FakeAuthRepository {
+  FakeAuthRepository({this.addDelay = true});
+
   final bool addDelay;
   final _authState = InMemoryStore<AppUser?>(null);
-
-  FakeAuthRepository({this.addDelay = true});
 
   // `null` means the user is not authenticated
   Stream<AppUser?> authStateChanges() => _authState.stream;
@@ -79,13 +80,15 @@ class FakeAuthRepository {
   }
 }
 
-final authRepositoryProvider = Provider<FakeAuthRepository>((ref) {
+@Riverpod(keepAlive: true)
+FakeAuthRepository authRepository(AuthRepositoryRef ref) {
   final auth = FakeAuthRepository();
   ref.onDispose(auth.dispose);
   return auth;
-});
+}
 
-final authStateChangesProvider = StreamProvider<AppUser?>((ref) {
+@Riverpod(keepAlive: true)
+Stream<AppUser?> authStateChanges(AuthStateChangesRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
   return authRepository.authStateChanges();
-});
+}

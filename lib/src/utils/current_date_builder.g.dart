@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'current_date_builder_provider.dart';
+part of 'current_date_builder.dart';
 
 // **************************************************************************
 // RiverpodGenerator

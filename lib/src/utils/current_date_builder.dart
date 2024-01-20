@@ -1,6 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'current_date_builder_provider.g.dart';
+part 'current_date_builder.g.dart';
 
 /// A provider that returns a function that returns the current date.
 /// This makes it easy to mock the current date in tests.

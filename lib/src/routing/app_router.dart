@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:nut_products_e_shop/src/features/authentication/data/fake_auth_repository.dart';
 import 'package:nut_products_e_shop/src/features/authentication/presentation/account/account_screen.dart';
@@ -13,6 +12,9 @@ import 'package:nut_products_e_shop/src/features/products/presentation/products_
 import 'package:nut_products_e_shop/src/features/reviews/presentation/leave_review_screen/leave_review_screen.dart';
 import 'package:nut_products_e_shop/src/routing/go_router_refresh_stream.dart';
 import 'package:nut_products_e_shop/src/routing/not_found_screen.dart';
+import 'package:riverpod_annotation/riverpod_annotation.dart';
+
+part 'app_router.g.dart';
 
 enum AppRoute {
   home('/'),
@@ -29,7 +31,8 @@ enum AppRoute {
   final String path;
 }
 
-final goRouterProvider = Provider<GoRouter>((ref) {
+@Riverpod(keepAlive: true)
+GoRouter goRouter(GoRouterRef ref) {
   final authRepository = ref.watch(authRepositoryProvider);
 
   return GoRouter(
@@ -129,4 +132,4 @@ final goRouterProvider = Provider<GoRouter>((ref) {
     ],
     errorBuilder: (context, state) => const NotFoundScreen(),
   );
-});
+}

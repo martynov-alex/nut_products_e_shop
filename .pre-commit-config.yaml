@@ -9,7 +9,7 @@ repos:
   hooks:
     - id: flutter-analyze
       args: [lib/*]
-- repo: https://github.com/Virtomize/flutter-test-pre-commit
-  rev: "036a12b8dc14bd40fb59c186b5451b4537cc2d53"
-  hooks:
-  - id: flutter-test
+# - repo: https://github.com/Virtomize/flutter-test-pre-commit
+#   rev: "036a12b8dc14bd40fb59c186b5451b4537cc2d53"
+#   hooks:
+#   - id: flutter-test

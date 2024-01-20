@@ -3,7 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_rating_bar.dart';
-import 'package:nut_products_e_shop/src/utils/date_formatter_provider.dart';
+import 'package:nut_products_e_shop/src/utils/date_formatter.dart';
 
 /// Simple card widget to show a product review info (score, comment, date)
 class ProductReviewCard extends ConsumerWidget {
