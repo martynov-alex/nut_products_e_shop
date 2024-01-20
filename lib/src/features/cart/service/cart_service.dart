@@ -87,22 +87,20 @@ final cartItemsCountProvider = Provider<int>(
 final cartTotalProvider = Provider.autoDispose<double>((ref) {
   final cart = ref.watch(cartProvider).value ?? const Cart();
   final productsList = ref.watch(productsListStreamProvider).value ?? [];
-
-  if (cart.items.isEmpty && productsList.isEmpty) return 0.0;
-
-  final total = cart.items.entries.fold<double>(
-    0.0,
-    (previousValue, item) {
+  if (cart.items.isNotEmpty && productsList.isNotEmpty) {
+    var total = 0.0;
+    for (final item in cart.items.entries) {
       // For Cart item:
       // - key: product ID
       // - value: quantity
       final product =
           productsList.firstWhere((product) => product.id == item.key);
-      return previousValue + (product.price * item.value);
-    },
-  );
-
-  return total;
+      total += product.price * item.value;
+    }
+    return total;
+  } else {
+    return 0.0;
+  }
 });
 
 final itemAvailableQuantityProvider =
