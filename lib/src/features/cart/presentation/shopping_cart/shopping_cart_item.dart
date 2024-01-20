@@ -13,7 +13,7 @@ import 'package:nut_products_e_shop/src/features/checkout/presentation/payment/p
 import 'package:nut_products_e_shop/src/features/products/data/fake_products_repository.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
+import 'package:nut_products_e_shop/src/utils/currency_formatter_provider.dart';
 
 /// Shows a shopping cart item (or loading/error UI if needed)
 class ShoppingCartItem extends ConsumerWidget {

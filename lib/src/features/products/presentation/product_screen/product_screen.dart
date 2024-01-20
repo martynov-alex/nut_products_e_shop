@@ -14,7 +14,7 @@ import 'package:nut_products_e_shop/src/features/products/presentation/product_s
 import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_reviews_list.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
+import 'package:nut_products_e_shop/src/utils/currency_formatter_provider.dart';
 
 /// Shows the product page for a given product ID.
 class ProductScreen extends StatelessWidget {

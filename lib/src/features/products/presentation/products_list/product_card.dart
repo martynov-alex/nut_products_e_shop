@@ -5,7 +5,7 @@ import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/products/domain/product.dart';
 import 'package:nut_products_e_shop/src/features/products/presentation/product_screen/product_average_rating.dart';
 import 'package:nut_products_e_shop/src/localization/string_hardcoded.dart';
-import 'package:nut_products_e_shop/src/utils/currency_formatter.dart';
+import 'package:nut_products_e_shop/src/utils/currency_formatter_provider.dart';
 
 /// Used to show a single product inside a card.
 class ProductCard extends ConsumerWidget {
