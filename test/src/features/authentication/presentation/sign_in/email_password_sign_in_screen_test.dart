@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/email_password_sign_in_state.dart';
+import 'package:nut_products_e_shop/src/features/authentication/presentation/sign_in/email_password_sign_in_form_type.dart';
 
 import '../../../../mocks.dart';
 import '../../auth_robot.dart';
