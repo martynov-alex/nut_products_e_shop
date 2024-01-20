@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:nut_products_e_shop/src/common_widgets/alert_dialogs.dart';
 import 'package:nut_products_e_shop/src/constants/app_sizes.dart';
 import 'package:nut_products_e_shop/src/features/reviews/domain/review.dart';
 import 'package:nut_products_e_shop/src/features/reviews/presentation/product_reviews/product_rating_bar.dart';
