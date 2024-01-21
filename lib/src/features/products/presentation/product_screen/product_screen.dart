@@ -27,7 +27,7 @@ class ProductScreen extends StatelessWidget {
     return Scaffold(
       appBar: const HomeAppBar(),
       body: Consumer(
-        builder: (context, ref, _) {
+        builder: (_, ref, __) {
           final productValue = ref.watch(productProvider(productId));
 
           return AsyncValueWidget<Product?>(

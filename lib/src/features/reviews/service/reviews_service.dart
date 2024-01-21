@@ -35,7 +35,7 @@ class ReviewsService {
     // * Note: this should be done on the backend
     // * At this stage the review is already submitted
     // * and we don't need to await for the product rating to also be updated
-    unawaited(_updateProductRating(productId));
+    await _updateProductRating(productId);
   }
 
   Future<void> _updateProductRating(ProductId productId) async {

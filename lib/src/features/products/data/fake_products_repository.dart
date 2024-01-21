@@ -22,13 +22,11 @@ class FakeProductsRepository {
   Product? getProduct(String id) => _getProduct(_products.value, id);
 
   Future<List<Product>> fetchProductsList() async {
-    await delay(addDelay: addDelay);
     return Future.value(_products.value);
   }
 
-  Stream<List<Product>> watchProductsList() async* {
-    await delay(addDelay: addDelay);
-    yield _products.value;
+  Stream<List<Product>> watchProductsList() {
+    return _products.stream;
   }
 
   Future<Product?> fetchProduct(String id) async => Future.value(
