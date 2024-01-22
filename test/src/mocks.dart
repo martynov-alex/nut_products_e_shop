@@ -17,6 +17,10 @@ final testUser = AppUser(
   email: testEmail,
 );
 
+class Listener<T> extends Mock {
+  void call(T? previous, T next);
+}
+
 class MockAuthRepository extends Mock implements FakeAuthRepository {}
 
 class MockRemoteCartRepository extends Mock implements RemoteCartRepository {}
