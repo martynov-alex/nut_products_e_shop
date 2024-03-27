@@ -1,6 +1,19 @@
+**.freezed.dart linguist-generated=true
+lib/**/*.g.dart linguist-generated=true
+lib/**/*.gr.dart linguist-generated=true
+lib/**/*.gen.dart linguist-generated=true
+lib/**/*.freezed.dart linguist-generated=true
+lib/**/*.chopper.dart linguist-generated=true
+**/__generated__/*.ast.gql.dart linguist-generated=true
+**/__generated__/*.gql.dart linguist-generated=true
+**/__generated__/*.data.gql.dart linguist-generated=true
+**/__generated__/*.req.gql.dart linguist-generated=true
+**/__generated__/*.var.gql.dart linguist-generated=true
+
+# OR
 # https://twitter.com/mkobuolys/status/1489610640335515648
-*.chopper.dart -diff
-*.freezed.dart -diff
-*.g.dart -diff
-*.gen.dart -diff
-*.gr.dart -diff
+# *.chopper.dart -diff
+# *.freezed.dart -diff
+# *.g.dart -diff
+# *.gen.dart -diff
+# *.gr.dart -diff
